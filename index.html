@@ -7,15 +7,22 @@
   <meta name="description" content="8개월의 여정을 함께 시작합니다. 선발된 6팀을 위한 링크 임팩트 펀드 프로그램 2026 참여 안내 페이지." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800;900&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800;900&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     :root {
       --link-red: #DD3928;
       --link-red-dark: #B02A1D;
       --link-red-soft: #FDECEA;
       --link-blue: #3AAED8;
+      --link-blue-bg: #B8DDEC;
+      --link-blue-deep: #1F7FA0;
       --link-green: #6FBE44;
-      --link-sky: #BFE1F0;
+      --link-green-deep: #4A8A2E;
+      --link-yellow: #F5C542;
+      --link-yellow-deep: #C69410;
+      --link-sand: #F7E3B8;
+      --link-sand-soft: #FBF0D6;
+      --link-sky: #B4DBE8;
       --ink: #1A1A1A;
       --ink-2: #333;
       --muted: #6B7280;
@@ -31,781 +38,1617 @@
       background: #fff;
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
-    img { max-width: 100%; display: block; }
+    img, svg { max-width: 100%; display: block; }
     a { color: inherit; text-decoration: none; }
 
-    /* Layout */
-    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
-    section { padding: 96px 0; }
-    @media (max-width: 720px) { section { padding: 64px 0; } }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 2; }
+    section { padding: 100px 0; position: relative; }
+    @media (max-width: 720px) {
+      section { padding: 72px 0; }
+      .container { padding: 0 20px; }
+    }
 
-    /* Nav */
-    .nav {
+    /* ============ TOP-LEFT NAV BUTTONS ============ */
+    .top-nav {
       position: sticky; top: 0; z-index: 50;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: saturate(180%) blur(12px);
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: saturate(180%) blur(14px);
       border-bottom: 1px solid var(--line);
     }
-    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-    .logo {
-      font-weight: 800; font-size: 15px; letter-spacing: 0.02em;
-      background: var(--link-red); color: #fff; padding: 6px 10px; line-height: 1.15;
+    .top-nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1200px; margin: 0 auto; padding: 14px 32px;
+      gap: 16px;
     }
-    .nav-links { display: flex; gap: 28px; font-size: 14px; color: var(--ink-2); }
-    .nav-links a:hover { color: var(--link-red); }
-    @media (max-width: 720px) { .nav-links { display: none; } }
+    .brand {
+      display: flex; align-items: center; gap: 14px;
+      flex-shrink: 0;
+    }
+    .brand .logo {
+      width: 52px; height: 52px;
+      display: block;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+    .brand .brand-text {
+      font-size: 14px; font-weight: 700; color: var(--ink-2); line-height: 1.35;
+      white-space: nowrap;
+    }
+    .brand .brand-text small { display: block; font-size: 12px; color: var(--muted); font-weight: 500; }
 
-    /* Hero */
+    .nav-tabs {
+      display: flex; gap: 8px; flex-wrap: wrap;
+    }
+    .nav-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 16px;
+      background: #fff;
+      border: 1.5px solid var(--line);
+      border-radius: 999px;
+      font-size: 13px; font-weight: 700; color: var(--ink-2);
+      cursor: pointer;
+      transition: all .18s ease;
+      white-space: nowrap;
+      font-family: inherit;
+    }
+    .nav-btn .n {
+      font-family: 'Inter', sans-serif; font-size: 11px;
+      background: var(--bg-2); color: var(--muted);
+      padding: 2px 7px; border-radius: 999px; font-weight: 800;
+      transition: all .18s ease;
+    }
+    .nav-btn:hover {
+      border-color: var(--link-red);
+      color: var(--link-red);
+    }
+    .nav-btn:hover .n { background: var(--link-red-soft); color: var(--link-red); }
+    .nav-btn.active {
+      background: var(--link-red);
+      color: #fff;
+      border-color: var(--link-red);
+      box-shadow: 0 6px 18px rgba(221,57,40,0.28);
+    }
+    .nav-btn.active .n {
+      background: rgba(255,255,255,0.22); color: #fff;
+    }
+
+    @media (max-width: 900px) {
+      .top-nav-inner { flex-direction: column; align-items: flex-start; }
+      .brand { align-self: flex-start; }
+      .nav-tabs {
+        width: 100%;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 2px;
+      }
+      .nav-btn { padding: 8px 12px; font-size: 12px; }
+    }
+
+    /* ============ PAGE views ============ */
+    .page { display: none; animation: fadeIn .3s ease; }
+    .page.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+    /* Section pill badge */
+    .pill {
+      display: inline-block; padding: 7px 16px; border-radius: 999px;
+      font-size: 13px; font-weight: 700; color: #fff;
+      letter-spacing: 0.01em; margin-bottom: 22px;
+    }
+    .pill.red    { background: var(--link-red); }
+    .pill.blue   { background: var(--link-blue); }
+    .pill.green  { background: var(--link-green); }
+    .pill.yellow { background: var(--link-yellow); color: #6b4a00; }
+
+    .big-title {
+      font-size: clamp(30px, 4.2vw, 46px);
+      font-weight: 800; letter-spacing: -0.02em; line-height: 1.25;
+      color: #0F172A; margin-bottom: 14px;
+    }
+    .big-sub {
+      font-size: 17px; color: var(--ink-2); max-width: 720px; margin-bottom: 48px;
+    }
+
+    /* Ornaments (SVG icons) */
+    .orn { position: absolute; pointer-events: none; user-select: none; z-index: 1; }
+
+    /* ============ HERO (Page 1 header) ============ */
     .hero {
-      background: linear-gradient(180deg, #E8F1F7 0%, #F6FAFC 100%);
-      padding: 120px 0 100px;
+      background: var(--link-sky);
+      padding: 100px 0 200px;
       position: relative; overflow: hidden;
     }
-    .hero::before {
-      content: ""; position: absolute; right: -120px; top: -120px;
-      width: 420px; height: 420px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(228,0,43,0.06), transparent 70%);
-    }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 13px; font-weight: 600; color: var(--link-red);
-      letter-spacing: 0.08em; text-transform: uppercase;
-      padding: 6px 12px; background: #fff; border: 1px solid #FDE0E4;
-      border-radius: 999px; margin-bottom: 24px;
-    }
-    .hero-eyebrow::before {
-      content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--link-red);
+    .hero-badge {
+      display: inline-block; background: var(--link-red); color: #fff;
+      font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 999px;
+      margin-bottom: 24px;
     }
     .hero h1 {
-      font-size: clamp(36px, 5.5vw, 62px);
-      font-weight: 800; letter-spacing: -0.02em; line-height: 1.15;
-      color: #0F172A; margin-bottom: 20px;
+      font-size: clamp(38px, 6.2vw, 74px);
+      font-weight: 900; letter-spacing: -0.03em; line-height: 1.08;
+      color: #101828; margin-bottom: 22px;
     }
     .hero h1 .accent { color: var(--link-red); }
-    .hero p.lead {
-      font-size: clamp(16px, 1.8vw, 19px);
-      color: var(--ink-2); max-width: 640px; margin-bottom: 40px;
+    .hero .lead {
+      font-size: clamp(16px, 1.7vw, 19px);
+      color: #1F3A47; max-width: 620px; margin-bottom: 40px;
     }
-    .hero-meta {
-      display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px;
-    }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 10px; }
     .chip {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 13px; font-weight: 600;
-      padding: 8px 14px; background: #fff; border: 1px solid var(--line);
-      border-radius: 999px; color: var(--ink-2);
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 14px; font-weight: 700; color: #1F3A47;
+      padding: 10px 18px; background: #fff; border-radius: 999px;
+      box-shadow: 0 3px 0 rgba(0,0,0,0.04);
     }
-    .chip strong { color: var(--link-red); }
+    .chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--link-red); }
+    .chip.blue .dot   { background: var(--link-blue); }
+    .chip.green .dot  { background: var(--link-green); }
+    .chip.yellow .dot { background: var(--link-yellow); }
 
-    /* Section heading */
-    .sec-num {
-      font-size: 12px; font-weight: 700; color: var(--link-red);
-      letter-spacing: 0.14em; margin-bottom: 12px; display: block;
+    .hero .orn-ast-1  { top: 12%; right: 8%; width: 100px; height: 100px; }
+    .hero .orn-circ-g { top: 40%; right: 14%; width: 120px; height: 120px; background: var(--link-green); border-radius: 50%; }
+    .hero .orn-circ-y { top: 55%; right: 7%; width: 80px; height: 80px; background: var(--link-yellow); border-radius: 50%; }
+    .hero .orn-sparkle { top: 58%; right: 26%; width: 38px; height: 38px; }
+    @media (max-width: 900px) {
+      .hero .orn-circ-g { width: 70px; height: 70px; top: 4%; right: 4%; }
+      .hero .orn-circ-y { width: 50px; height: 50px; top: 6%; right: 30%; }
+      .hero .orn-ast-1  { width: 60px; height: 60px; top: 3%; right: 60%; }
+      .hero .orn-sparkle { display: none; }
     }
-    .sec-title {
-      font-size: clamp(26px, 3.4vw, 38px); font-weight: 800;
-      letter-spacing: -0.015em; line-height: 1.25;
-      color: var(--ink); margin-bottom: 16px;
-    }
-    .sec-sub { font-size: 17px; color: var(--muted); margin-bottom: 40px; max-width: 720px; }
-    .sec-title::after {
-      content: ""; display: block; width: 36px; height: 3px;
-      background: var(--link-red); margin-top: 14px;
+    .sand-wave {
+      position: absolute; left: -5%; right: -5%; bottom: -1px; height: 120px;
+      background: var(--link-sand); border-radius: 50% 50% 0 0 / 40px; z-index: 1;
     }
 
-    /* About cards (배경 3개) */
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    @media (max-width: 900px) { .grid-3 { grid-template-columns: 1fr; } }
-    .bg-card {
-      background: #fff; border: 1px solid var(--line); border-radius: 14px;
-      padding: 28px; position: relative; overflow: hidden;
-      transition: transform .2s, box-shadow .2s;
-    }
-    .bg-card:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
-    .bg-card::before {
-      content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
-    }
-    .bg-card.red::before   { background: var(--link-red); }
-    .bg-card.blue::before  { background: var(--link-blue); }
-    .bg-card.green::before { background: var(--link-green); }
-    .bg-card h3 { font-size: 19px; font-weight: 700; margin-bottom: 10px; }
-    .bg-card p { color: var(--ink-2); font-size: 15px; }
+    /* Section variants */
+    .sec-sky   { background: var(--link-sky); overflow: hidden; }
+    .sec-sand  { background: var(--link-sand); overflow: hidden; }
+    .sec-cream { background: var(--link-sand-soft); overflow: hidden; }
+    .sec-white { background: #fff; }
 
-    /* Two-col support */
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    /* Page header (non-hero) */
+    .page-header {
+      padding: 80px 0 90px;
+      position: relative; overflow: hidden;
+    }
+    .page-header .container { position: relative; z-index: 2; }
+    .page-header h1 {
+      font-size: clamp(34px, 5vw, 56px);
+      font-weight: 900; letter-spacing: -0.025em; line-height: 1.12;
+      color: #101828; margin-bottom: 16px;
+    }
+    .page-header p {
+      font-size: 17px; color: #1F3A47; max-width: 640px;
+    }
+
+    /* Reason cards */
+    .reason-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 12px; }
+    @media (max-width: 900px) { .reason-grid { grid-template-columns: 1fr; } }
+    .reason {
+      background: #fff; border-radius: 14px; padding: 26px 26px 30px;
+      position: relative; box-shadow: 0 6px 24px rgba(15,23,42,0.06);
+    }
+    .reason::before {
+      content: ""; position: absolute; top: 0; left: 22px; right: 22px; height: 3px;
+      border-radius: 2px; background: var(--link-red);
+    }
+    .reason.blue::before  { background: var(--link-blue); }
+    .reason.green::before { background: var(--link-green); }
+    .reason.yellow::before { background: var(--link-yellow); }
+    .reason h3 { font-size: 20px; font-weight: 800; margin: 14px 0 10px; color: var(--link-red); }
+    .reason.blue h3   { color: var(--link-blue-deep); }
+    .reason.green h3  { color: var(--link-green-deep); }
+    .reason.yellow h3 { color: var(--link-yellow-deep); }
+    .reason p { color: var(--ink-2); font-size: 15px; }
+
+    /* Support 2-card */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
     @media (max-width: 720px) { .grid-2 { grid-template-columns: 1fr; } }
-    .support-card {
-      padding: 32px; border-radius: 16px; background: #fff;
-      border: 1px solid var(--line);
+    .support {
+      background: #fff; border-radius: 18px; padding: 34px;
+      box-shadow: 0 6px 24px rgba(15,23,42,0.06);
     }
-    .support-card .badge {
-      display: inline-block; padding: 5px 12px; border-radius: 6px;
-      font-size: 12px; font-weight: 700; letter-spacing: 0.02em;
-      margin-bottom: 16px;
+    .support .badge {
+      display: inline-block; padding: 6px 14px; border-radius: 999px;
+      font-size: 12px; font-weight: 800; margin-bottom: 18px;
     }
-    .support-card.red .badge { background: var(--link-red); color: #fff; }
-    .support-card.blue .badge { background: var(--link-blue); color: #fff; }
-    .support-card h3 { font-size: 22px; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.01em; }
-    .support-card p { color: var(--ink-2); }
-    .support-card .highlight {
-      display: block; margin-top: 20px; font-size: 24px; font-weight: 800;
-      color: var(--link-red); letter-spacing: -0.01em;
+    .support.red  .badge { background: var(--link-red); color: #fff; }
+    .support.blue .badge { background: var(--link-blue); color: #fff; }
+    .support h3 { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
+    .support p { color: var(--ink-2); font-size: 15px; }
+    .support .hl {
+      display: block; margin-top: 22px; font-size: 28px; font-weight: 900;
+      letter-spacing: -0.015em; font-family: 'Inter', 'Pretendard', sans-serif;
     }
+    .support.red  .hl { color: var(--link-red); }
+    .support.blue .hl { color: var(--link-blue-deep); }
 
-    /* Goals list */
-    .goals { display: flex; flex-direction: column; gap: 4px; }
-    .goal-row {
-      display: grid; grid-template-columns: 88px 1fr; gap: 24px;
-      padding: 28px 0; border-bottom: 1px solid var(--line);
-      align-items: start;
+    /* Goals */
+    .goals-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    @media (max-width: 900px) { .goals-grid { grid-template-columns: 1fr; } }
+    .goal {
+      background: #fff; border-radius: 18px; padding: 32px 28px;
+      box-shadow: 0 6px 24px rgba(15,23,42,0.06);
     }
-    .goal-row:last-child { border-bottom: none; }
-    .goal-num {
-      font-size: 44px; font-weight: 800; color: var(--link-red);
-      line-height: 1; letter-spacing: -0.02em;
+    .goal .num {
+      font-family: 'Inter', sans-serif;
+      font-size: 56px; font-weight: 900; line-height: 1;
+      color: var(--link-red); letter-spacing: -0.03em; margin-bottom: 14px;
     }
-    .goal-row h4 { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
-    .goal-row p { color: var(--ink-2); font-size: 15px; }
+    .goal:nth-child(2) .num { color: var(--link-blue); }
+    .goal:nth-child(3) .num { color: var(--link-green); }
+    .goal h4 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+    .goal p { color: var(--ink-2); font-size: 15px; }
 
-    /* Stats */
-    .stats-band { background: #0F172A; color: #fff; padding: 72px 0; }
+    /* Stats band */
+    .stats-band { background: #0F172A; color: #fff; padding: 84px 0; position: relative; overflow: hidden; }
     .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
     @media (max-width: 720px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
-    .stat-item .num {
+    .stat .num {
       font-family: 'Inter', 'Pretendard', sans-serif;
-      font-size: clamp(36px, 5vw, 56px); font-weight: 800;
-      letter-spacing: -0.02em; line-height: 1;
+      font-size: clamp(42px, 5.5vw, 60px); font-weight: 900;
+      letter-spacing: -0.03em; line-height: 1;
     }
-    .stat-item .num em {
-      font-style: normal; font-size: 0.5em; margin-left: 4px; color: #94A3B8;
-    }
-    .stat-item .label { margin-top: 8px; color: #94A3B8; font-size: 14px; }
-    .stat-item.hl .num { color: var(--link-red); }
+    .stat .num em { font-style: normal; font-size: 0.42em; margin-left: 4px; color: #94A3B8; font-weight: 700; }
+    .stat .label { margin-top: 10px; color: #94A3B8; font-size: 14px; font-weight: 500; }
+    .stat.red    .num { color: var(--link-red); }
+    .stat.blue   .num { color: var(--link-blue); }
+    .stat.green  .num { color: var(--link-green); }
+    .stat.yellow .num { color: var(--link-yellow); }
 
     /* Timeline */
-    .timeline { position: relative; padding-left: 32px; }
-    .timeline::before {
-      content: ""; position: absolute; left: 8px; top: 6px; bottom: 6px;
-      width: 2px; background: var(--line);
+    .timeline-list { display: grid; gap: 12px; margin-top: 12px; }
+    .tl-row {
+      display: grid; grid-template-columns: 280px 1fr; gap: 24px;
+      background: #fff; border-radius: 14px; padding: 22px 26px;
+      box-shadow: 0 4px 18px rgba(15,23,42,0.05);
+      border-left: 5px solid var(--link-red);
     }
-    .tl-item { position: relative; padding-bottom: 32px; }
-    .tl-item::before {
-      content: ""; position: absolute; left: -32px; top: 8px;
-      width: 18px; height: 18px; border-radius: 50%;
-      background: #fff; border: 3px solid var(--link-red);
-    }
-    .tl-item.final::before { background: var(--link-red); }
-    .tl-date { font-size: 13px; font-weight: 700; color: var(--link-red); letter-spacing: 0.02em; }
-    .tl-title { font-size: 19px; font-weight: 700; margin: 4px 0 6px; }
-    .tl-desc { color: var(--ink-2); font-size: 15px; }
+    .tl-row:nth-child(2) { border-left-color: var(--link-blue); }
+    .tl-row:nth-child(3) { border-left-color: var(--link-green); }
+    .tl-row:nth-child(4) { border-left-color: var(--link-yellow); }
+    .tl-row:nth-child(5) { border-left-color: var(--link-red-dark); }
+    .tl-row:nth-child(6) { border-left-color: var(--link-red); background: #FDECEA; }
+    @media (max-width: 720px) { .tl-row { grid-template-columns: 1fr; gap: 6px; } }
+    .tl-left h4 { font-size: 18px; font-weight: 800; margin-bottom: 4px; }
+    .tl-left .date { font-size: 13px; color: var(--muted); font-weight: 600; }
+    .tl-desc { color: var(--ink-2); font-size: 15px; align-self: center; }
 
     /* Workshops */
-    .ws-list { display: grid; gap: 12px; }
-    .ws-item {
-      display: grid; grid-template-columns: 200px 1fr auto; gap: 20px;
-      align-items: center; padding: 20px 24px;
-      background: #fff; border: 1px solid var(--line); border-radius: 12px;
+    .ws-list { display: grid; gap: 12px; margin-top: 12px; }
+    .ws {
+      display: grid; grid-template-columns: 240px 1fr auto; gap: 20px;
+      align-items: center; padding: 22px 26px;
+      background: #fff; border-radius: 14px; box-shadow: 0 4px 18px rgba(15,23,42,0.05);
     }
-    @media (max-width: 720px) { .ws-item { grid-template-columns: 1fr; gap: 8px; } }
-    .ws-date { font-weight: 700; color: var(--ink); }
-    .ws-date small { display: block; font-weight: 500; font-size: 13px; color: var(--muted); }
-    .ws-name { font-size: 16px; color: var(--ink-2); }
-    .ws-name strong { color: var(--ink); }
+    @media (max-width: 720px) { .ws { grid-template-columns: 1fr; gap: 8px; padding: 20px; } }
+    .ws-date { font-weight: 800; color: var(--ink); font-size: 16px; }
+    .ws-date small { display: block; font-weight: 500; font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .ws-name { font-size: 15px; color: var(--ink-2); }
+    .ws-name strong { color: var(--ink); font-weight: 800; }
     .ws-tag {
-      display: inline-block; font-size: 12px; font-weight: 700;
-      padding: 4px 10px; border-radius: 999px;
+      display: inline-block; font-size: 11px; font-weight: 800;
+      padding: 6px 14px; border-radius: 999px;
       background: var(--link-red-soft); color: var(--link-red);
     }
+    .ws-tag.blue  { background: #D8EEF7; color: var(--link-blue-deep); }
+    .ws-tag.green { background: #E1F1D5; color: var(--link-green-deep); }
+    .necessity {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 800; color: #fff; background: var(--link-red);
+      padding: 4px 12px; border-radius: 999px; margin-left: 12px;
+    }
+    .necessity.blue { background: var(--link-blue); }
 
-    /* Teams */
-    .teams-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    @media (max-width: 900px) { .teams-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 640px)  { .teams-grid { grid-template-columns: 1fr; } }
+    .warn-box {
+      margin-top: 40px; padding: 20px 24px; background: var(--link-red-soft);
+      border-left: 4px solid var(--link-red); border-radius: 8px;
+      color: var(--link-red-dark); font-size: 14px; font-weight: 600;
+    }
+
+    /* Team cards — single-column, full-width visual layout */
+    .teams-list { display: grid; grid-template-columns: 1fr; gap: 28px; margin-top: 12px; }
     .team-card {
-      background: #fff; border: 1px solid var(--line); border-radius: 14px;
-      padding: 28px; position: relative;
-      transition: transform .2s, box-shadow .2s, border-color .2s;
+      background: #fff; border-radius: 24px;
+      box-shadow: 0 10px 40px rgba(15,23,42,0.06);
+      position: relative;
+      overflow: hidden;
+      transition: transform .25s, box-shadow .25s;
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      min-height: 320px;
     }
-    .team-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-      border-color: transparent;
+    .team-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(15,23,42,0.12); }
+    @media (max-width: 900px) {
+      .team-card { grid-template-columns: 1fr; }
     }
-    .team-card .idx {
-      font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700;
-      color: var(--muted); letter-spacing: 0.08em; margin-bottom: 12px;
+
+    /* Left panel of team card */
+    .team-card .left {
+      padding: 40px 36px;
+      background: linear-gradient(160deg, #FAFAFA 0%, #F3F4F6 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex; flex-direction: column; justify-content: space-between;
     }
+    .team-card.accent-red    .left { background: linear-gradient(160deg, #FFF5F3 0%, #FDECEA 100%); }
+    .team-card.accent-blue   .left { background: linear-gradient(160deg, #F0FAFD 0%, #D8EEF7 100%); }
+    .team-card.accent-green  .left { background: linear-gradient(160deg, #F3FAEC 0%, #E1F1D5 100%); }
+    .team-card.accent-yellow .left { background: linear-gradient(160deg, #FFF9E6 0%, #FDF0BA 100%); }
+    .team-card.accent-purple .left { background: linear-gradient(160deg, #F7F0FE 0%, #E9DBFB 100%); }
+    .team-card.accent-coral  .left { background: linear-gradient(160deg, #FFF3EE 0%, #FEDCCB 100%); }
+    .team-card.accent-olive  .left { background: linear-gradient(160deg, #F7F5E4 0%, #E4E1B4 100%); }
+
+    /* Left panel decorative index — huge outline number */
+    .team-card .big-index {
+      position: absolute;
+      top: 20px; right: -20px;
+      font-family: 'Inter', sans-serif;
+      font-size: 180px; font-weight: 900; line-height: 1;
+      letter-spacing: -0.05em;
+      color: rgba(255,255,255,0.5);
+      -webkit-text-stroke: 2px rgba(255,255,255,0.9);
+      pointer-events: none;
+      user-select: none;
+    }
+    .team-card.accent-red    .big-index { color: rgba(221,57,40,0.10); -webkit-text-stroke: 2px rgba(221,57,40,0.20); }
+    .team-card.accent-blue   .big-index { color: rgba(58,174,216,0.12); -webkit-text-stroke: 2px rgba(31,127,160,0.25); }
+    .team-card.accent-green  .big-index { color: rgba(111,190,68,0.14); -webkit-text-stroke: 2px rgba(74,138,46,0.25); }
+    .team-card.accent-yellow .big-index { color: rgba(245,197,66,0.20); -webkit-text-stroke: 2px rgba(198,148,16,0.30); }
+    .team-card.accent-purple .big-index { color: rgba(139,92,246,0.12); -webkit-text-stroke: 2px rgba(88,45,187,0.25); }
+    .team-card.accent-coral  .big-index { color: rgba(255,105,60,0.14); -webkit-text-stroke: 2px rgba(200,70,30,0.25); }
+    .team-card.accent-olive  .big-index { color: rgba(138,131,44,0.18); -webkit-text-stroke: 2px rgba(102,97,32,0.30); }
+
+    /* Left panel content */
+    .team-card .head {
+      display: flex; align-items: center; gap: 10px;
+      position: relative; z-index: 2;
+    }
+    .team-card .head .badge {
+      background: var(--link-red); color: #fff; font-size: 11px; font-weight: 800;
+      padding: 5px 12px; border-radius: 999px; letter-spacing: 0.03em;
+    }
+    .team-card.accent-blue   .head .badge { background: var(--link-blue); }
+    .team-card.accent-green  .head .badge { background: var(--link-green); }
+    .team-card.accent-yellow .head .badge { background: var(--link-yellow); color: #6b4a00; }
+    .team-card.accent-purple .head .badge { background: #8B5CF6; }
+    .team-card.accent-coral  .head .badge { background: #FF693C; }
+    .team-card.accent-olive  .head .badge { background: #8A832C; }
+    .team-card .head .idx {
+      font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700; color: var(--muted);
+    }
+    .team-card .team-title-block { position: relative; z-index: 2; margin-top: 24px; }
     .team-card h4 {
-      font-size: 22px; font-weight: 800; letter-spacing: -0.01em;
-      margin-bottom: 6px; color: var(--ink);
+      font-size: 32px; font-weight: 900; letter-spacing: -0.025em;
+      line-height: 1.15; margin-bottom: 10px; color: var(--ink);
+    }
+    .team-card .en {
+      display: block; font-family: 'Inter', sans-serif;
+      font-size: 14px; font-weight: 700; color: var(--muted);
+      letter-spacing: 0.02em; margin-top: -6px; margin-bottom: 10px;
     }
     .team-card .meta {
-      font-size: 13px; color: var(--muted); margin-bottom: 14px;
+      font-size: 13px; color: var(--muted); margin-bottom: 16px;
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
     }
-    .team-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+    .team-card .meta .meta-pill {
+      background: rgba(255,255,255,0.7); border: 1px solid rgba(0,0,0,0.06);
+      padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 700;
+      color: var(--ink-2);
+    }
+    .team-card .tags {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      position: relative; z-index: 2;
+    }
     .tag {
-      font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 4px;
-      background: var(--bg-2); color: var(--ink-2);
+      font-size: 11px; font-weight: 800; padding: 5px 10px; border-radius: 6px;
+      background: #F3F4F6; color: var(--ink-2);
     }
-    .tag.red   { background: #FDE0E4; color: var(--link-red-dark); }
-    .tag.blue  { background: #D8EEF7; color: #1F7FA0; }
-    .tag.green { background: #E1F1D5; color: #4A8A2E; }
-    .team-card p { font-size: 14px; color: var(--ink-2); line-height: 1.6; }
+    .tag.red   { background: var(--link-red-soft); color: var(--link-red-dark); }
+    .tag.blue  { background: #D8EEF7; color: var(--link-blue-deep); }
+    .tag.green { background: #E1F1D5; color: var(--link-green-deep); }
+
+    /* Right panel — project overview */
+    .team-card .right {
+      padding: 40px 44px;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative;
+    }
+    .team-card .right .kicker {
+      font-size: 11px; font-weight: 800; letter-spacing: 0.14em;
+      color: var(--link-red); margin-bottom: 14px; text-transform: uppercase;
+    }
+    .team-card.accent-blue   .right .kicker { color: var(--link-blue-deep); }
+    .team-card.accent-green  .right .kicker { color: var(--link-green-deep); }
+    .team-card.accent-yellow .right .kicker { color: var(--link-yellow-deep); }
+    .team-card.accent-purple .right .kicker { color: #6D28D9; }
+    .team-card.accent-coral  .right .kicker { color: #C74B1E; }
+    .team-card.accent-olive  .right .kicker { color: #6E6820; }
+    .team-card .right h5 {
+      font-size: 20px; font-weight: 800; letter-spacing: -0.015em;
+      line-height: 1.4; margin-bottom: 20px; color: var(--ink);
+    }
+    .team-card .highlights {
+      list-style: none; display: grid; gap: 12px; margin-top: 6px;
+    }
+    .team-card .highlights li {
+      display: grid; grid-template-columns: 32px 1fr; gap: 12px;
+      font-size: 14px; color: var(--ink-2); line-height: 1.6;
+      align-items: start;
+    }
+    .team-card .highlights li .hl-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 26px; height: 26px; border-radius: 8px;
+      background: var(--link-red); color: #fff;
+      font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 800;
+      flex-shrink: 0; margin-top: 2px;
+    }
+    .team-card.accent-blue   .highlights li .hl-icon { background: var(--link-blue); }
+    .team-card.accent-green  .highlights li .hl-icon { background: var(--link-green); }
+    .team-card.accent-yellow .highlights li .hl-icon { background: var(--link-yellow); color: #6b4a00; }
+    .team-card.accent-purple .highlights li .hl-icon { background: #8B5CF6; }
+    .team-card.accent-coral  .highlights li .hl-icon { background: #FF693C; }
+    .team-card.accent-olive  .highlights li .hl-icon { background: #8A832C; }
+    .team-card .highlights li strong { color: var(--ink); font-weight: 800; }
+
+    /* Top color strip */
+    .team-card::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+      background: var(--link-red); z-index: 3;
+    }
+    .team-card.accent-blue::before   { background: var(--link-blue); }
+    .team-card.accent-green::before  { background: var(--link-green); }
+    .team-card.accent-yellow::before { background: var(--link-yellow); }
+    .team-card.accent-purple::before { background: #8B5CF6; }
+    .team-card.accent-coral::before  { background: #FF693C; }
+    .team-card.accent-olive::before  { background: #8A832C; }
+
+    @media (max-width: 900px) {
+      .team-card .left  { padding: 32px 28px 24px; }
+      .team-card .right { padding: 24px 28px 36px; }
+      .team-card .big-index { font-size: 140px; top: 10px; right: -10px; }
+      .team-card h4 { font-size: 26px; }
+    }
 
     /* Funding table */
-    .table-wrap {
-      background: #fff; border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
-    }
+    .table-wrap { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 28px rgba(15,23,42,0.06); }
     table { width: 100%; border-collapse: collapse; }
-    th, td { padding: 18px 20px; text-align: left; font-size: 15px; }
+    th, td { padding: 20px 22px; text-align: left; font-size: 15px; }
     thead th {
-      background: var(--link-red); color: #fff; font-weight: 700; font-size: 14px;
-      letter-spacing: 0.02em;
+      background: var(--link-red); color: #fff; font-weight: 800; font-size: 13px; letter-spacing: 0.06em;
     }
-    tbody tr { border-top: 1px solid var(--line); }
-    tbody tr:hover { background: var(--bg); }
-    td.pct { font-weight: 800; color: var(--link-red); font-family: 'Inter', sans-serif; }
-    td.stage { font-weight: 700; }
+    tbody tr { border-top: 1px solid #F3F4F6; }
+    tbody tr:hover { background: #FAFAFA; }
+    td.pct { font-weight: 900; color: var(--link-red); font-family: 'Inter', sans-serif; font-size: 18px; }
+    td.stage { font-weight: 800; font-size: 16px; }
 
-    /* Guide */
-    .guides { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-    @media (max-width: 720px) { .guides { grid-template-columns: 1fr; } }
-    .guide {
-      background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 24px;
-      border-left: 4px solid var(--link-red);
+    /* Guide accordion — Contact & 가이드 */
+    .guide-accordion { display: grid; gap: 14px; margin-top: 20px; }
+    .guide-item {
+      background: #fff; border-radius: 16px; overflow: hidden;
+      box-shadow: 0 6px 20px rgba(15,23,42,0.05);
+      border: 1px solid rgba(15,23,42,0.05);
+      transition: box-shadow 0.25s ease, transform 0.25s ease;
     }
-    .guide h4 {
-      display: flex; justify-content: space-between; align-items: center;
-      font-size: 17px; font-weight: 700; margin-bottom: 10px;
+    .guide-item:hover { box-shadow: 0 12px 30px rgba(15,23,42,0.08); }
+    .guide-item.open { box-shadow: 0 18px 40px rgba(15,23,42,0.12); }
+    .guide-item .g-head {
+      display: grid; grid-template-columns: 64px 1fr auto auto; gap: 18px;
+      align-items: center; padding: 22px 26px; cursor: pointer; user-select: none;
+      background: #fff; transition: background 0.2s ease;
     }
-    .guide h4 .g-num {
-      font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700;
-      color: #fff; background: var(--link-red); padding: 3px 8px; border-radius: 4px;
+    .guide-item:hover .g-head { background: #FAFBFC; }
+    .guide-item .g-icon {
+      width: 56px; height: 56px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-family: 'Inter', sans-serif; font-weight: 900; font-size: 22px;
+      background: var(--link-red);
+      box-shadow: 0 6px 14px rgba(221,57,40,0.25);
     }
-    .guide p, .guide li { font-size: 14px; color: var(--ink-2); line-height: 1.65; }
-    .guide ul { list-style: none; margin-top: 6px; }
-    .guide ul li { position: relative; padding-left: 14px; margin-bottom: 4px; }
-    .guide ul li::before {
-      content: ""; position: absolute; left: 0; top: 10px;
-      width: 5px; height: 5px; border-radius: 50%; background: var(--link-red);
+    .guide-item[data-color="blue"]   .g-icon { background: var(--link-blue);   box-shadow: 0 6px 14px rgba(58,174,216,0.30); }
+    .guide-item[data-color="green"]  .g-icon { background: var(--link-green);  box-shadow: 0 6px 14px rgba(111,190,68,0.30); }
+    .guide-item[data-color="yellow"] .g-icon { background: var(--link-yellow); color: #6b4a00; box-shadow: 0 6px 14px rgba(245,197,66,0.35); }
+    .guide-item[data-color="purple"] .g-icon { background: #8B5CF6; box-shadow: 0 6px 14px rgba(139,92,246,0.30); }
+    .guide-item[data-color="coral"]  .g-icon { background: #FF693C; box-shadow: 0 6px 14px rgba(255,105,60,0.30); }
+    .guide-item .g-icon svg { width: 28px; height: 28px; }
+    .guide-item .g-title-block h4 {
+      font-size: 17px; font-weight: 800; color: var(--ink);
+      letter-spacing: -0.01em; line-height: 1.35;
+    }
+    .guide-item .g-title-block .g-eyebrow {
+      font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 800;
+      color: var(--muted); letter-spacing: 0.14em; text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .guide-item .g-num-pill {
+      font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 800;
+      color: #fff; background: var(--link-red); padding: 5px 11px; border-radius: 999px;
+      white-space: nowrap;
+    }
+    .guide-item[data-color="blue"]   .g-num-pill { background: var(--link-blue); }
+    .guide-item[data-color="green"]  .g-num-pill { background: var(--link-green); }
+    .guide-item[data-color="yellow"] .g-num-pill { background: var(--link-yellow); color: #6b4a00; }
+    .guide-item[data-color="purple"] .g-num-pill { background: #8B5CF6; }
+    .guide-item[data-color="coral"]  .g-num-pill { background: #FF693C; }
+    .guide-item .g-chevron {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: #F3F4F6; display: flex; align-items: center; justify-content: center;
+      transition: transform 0.3s ease, background 0.2s ease;
+      color: var(--ink-2);
+    }
+    .guide-item.open .g-chevron { transform: rotate(180deg); background: var(--ink); color: #fff; }
+    .guide-item .g-body {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .guide-item.open .g-body { max-height: 1200px; }
+    .guide-item .g-body-inner {
+      padding: 4px 26px 28px;
+      border-top: 1px dashed rgba(15,23,42,0.08);
+      margin-top: -4px;
+    }
+    .guide-item .g-body-inner .g-lead {
+      font-size: 15px; color: var(--ink-2); line-height: 1.7; margin: 18px 0 14px;
+    }
+    .guide-item .g-body-inner .g-lead strong { color: var(--ink); }
+
+    /* Body visual variants */
+    .g-checklist { list-style: none; display: grid; gap: 10px; margin-top: 8px; }
+    .g-checklist li {
+      display: grid; grid-template-columns: 24px 1fr; gap: 12px;
+      align-items: start; font-size: 14px; color: var(--ink-2); line-height: 1.6;
+    }
+    .g-checklist li .g-check {
+      width: 22px; height: 22px; border-radius: 6px;
+      background: rgba(111,190,68,0.15); color: var(--link-green-deep);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .g-checklist li strong { color: var(--ink); font-weight: 800; }
+
+    /* Do / Don't grid */
+    .g-do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px; }
+    @media (max-width: 640px) { .g-do-dont { grid-template-columns: 1fr; } }
+    .g-do-dont .g-col {
+      border-radius: 12px; padding: 18px 20px;
+      border: 1px solid rgba(15,23,42,0.06);
+    }
+    .g-do-dont .g-col.do   { background: rgba(111,190,68,0.08); border-color: rgba(111,190,68,0.20); }
+    .g-do-dont .g-col.dont { background: rgba(221,57,40,0.06); border-color: rgba(221,57,40,0.20); }
+    .g-do-dont .g-col h6 {
+      font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
+      margin-bottom: 10px; display: flex; align-items: center; gap: 6px;
+    }
+    .g-do-dont .g-col.do   h6 { color: var(--link-green-deep); }
+    .g-do-dont .g-col.dont h6 { color: var(--link-red-dark); }
+    .g-do-dont .g-col ul { list-style: none; display: grid; gap: 6px; }
+    .g-do-dont .g-col li {
+      font-size: 13px; color: var(--ink-2); line-height: 1.55;
+      padding-left: 16px; position: relative;
+    }
+    .g-do-dont .g-col.do   li::before { content: "✓"; position: absolute; left: 0; color: var(--link-green-deep); font-weight: 800; }
+    .g-do-dont .g-col.dont li::before { content: "✕"; position: absolute; left: 0; color: var(--link-red-dark); font-weight: 800; }
+
+    /* Numbered process rail */
+    .g-process { display: grid; gap: 10px; margin-top: 8px; }
+    .g-process .g-step {
+      display: grid; grid-template-columns: 36px 1fr; gap: 14px; align-items: start;
+    }
+    .g-process .g-step .g-step-num {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: var(--link-red); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 800;
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .guide-item[data-color="blue"]   .g-process .g-step-num { background: var(--link-blue); }
+    .guide-item[data-color="green"]  .g-process .g-step-num { background: var(--link-green); }
+    .guide-item[data-color="yellow"] .g-process .g-step-num { background: var(--link-yellow); color: #6b4a00; }
+    .guide-item[data-color="purple"] .g-process .g-step-num { background: #8B5CF6; }
+    .guide-item[data-color="coral"]  .g-process .g-step-num { background: #FF693C; }
+    .g-process .g-step .g-step-text { font-size: 14px; color: var(--ink-2); line-height: 1.6; padding-top: 4px; }
+    .g-process .g-step .g-step-text strong { color: var(--ink); font-weight: 800; }
+
+    /* Two-column split for guide 7 */
+    .g-split { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 8px; }
+    @media (max-width: 720px) { .g-split { grid-template-columns: 1fr; } }
+    .g-split .g-panel {
+      background: #F8FAFC; border-radius: 14px; padding: 22px;
+      border: 1px solid rgba(15,23,42,0.06);
+    }
+    .g-split .g-panel h6 {
+      font-size: 14px; font-weight: 800; color: var(--ink);
+      margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+    }
+    .g-split .g-panel h6 .g-dot {
+      width: 10px; height: 10px; border-radius: 50%; background: var(--link-red);
+    }
+    .g-split .g-panel:nth-child(2) h6 .g-dot { background: var(--link-blue); }
+
+    /* Accordion actions bar */
+    .g-actions {
+      display: flex; justify-content: flex-end; gap: 8px; margin-bottom: 4px;
+    }
+    .g-actions button {
+      background: transparent; border: 1px solid rgba(15,23,42,0.12);
+      color: var(--ink-2); font-size: 12px; font-weight: 700;
+      padding: 6px 14px; border-radius: 999px; cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+    .g-actions button:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+    @media (max-width: 640px) {
+      .guide-item .g-head { grid-template-columns: 52px 1fr auto; padding: 18px 20px; gap: 14px; }
+      .guide-item .g-num-pill { display: none; }
+      .guide-item .g-icon { width: 48px; height: 48px; font-size: 18px; }
+      .guide-item .g-body-inner { padding: 4px 20px 22px; }
     }
 
     /* Contact card */
     .contact {
-      background: #0F172A; color: #fff; border-radius: 16px; padding: 40px;
+      background: #0F172A; color: #fff; border-radius: 20px; padding: 44px;
       display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
     }
-    @media (max-width: 720px) { .contact { grid-template-columns: 1fr; } }
-    .contact h3 { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
-    .contact .role { color: var(--link-red); font-size: 13px; font-weight: 700; margin-bottom: 6px; letter-spacing: 0.04em; }
+    @media (max-width: 720px) { .contact { grid-template-columns: 1fr; padding: 32px; } }
+    .contact h3 { font-size: 24px; font-weight: 900; margin-bottom: 6px; }
+    .contact .role {
+      color: var(--link-red); font-size: 12px; font-weight: 800;
+      margin-bottom: 8px; letter-spacing: 0.08em;
+    }
     .contact .teams { color: #CBD5E1; font-size: 14px; }
     .contact-foot {
-      grid-column: 1 / -1; margin-top: 16px; padding-top: 20px;
+      grid-column: 1 / -1; margin-top: 8px; padding-top: 22px;
       border-top: 1px solid #1F2937; color: #94A3B8; font-size: 13px;
     }
 
-    /* CTA / Footer band */
-    .cta {
-      background: linear-gradient(180deg, #E8F1F7 0%, #ffffff 100%);
-      padding: 100px 0; text-align: center;
+    /* Page footer inside each page (next / prev) */
+    .page-nav {
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+      padding: 40px 0 100px; border-top: 1px solid var(--line);
+      margin-top: 20px;
     }
-    .cta h2 {
-      font-size: clamp(30px, 4.5vw, 52px); font-weight: 800;
-      letter-spacing: -0.02em; margin-bottom: 16px;
+    .page-nav a {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 20px; background: #fff; border: 1.5px solid var(--line);
+      border-radius: 999px; font-size: 14px; font-weight: 700; color: var(--ink-2);
+      cursor: pointer; transition: all .18s ease;
     }
-    .cta p { color: var(--ink-2); font-size: 17px; max-width: 560px; margin: 0 auto; }
-    .cta .signature {
-      display: inline-block; margin-top: 40px; padding: 10px 16px;
-      background: var(--link-red); color: #fff; font-weight: 800;
-      letter-spacing: 0.02em; font-size: 14px;
+    .page-nav a:hover { border-color: var(--link-red); color: var(--link-red); }
+    .page-nav a.next {
+      background: var(--link-red); color: #fff; border-color: var(--link-red);
+      box-shadow: 0 6px 18px rgba(221,57,40,0.28);
     }
+    .page-nav a.next:hover { background: var(--link-red-dark); border-color: var(--link-red-dark); color: #fff; }
 
     footer {
       padding: 40px 0; border-top: 1px solid var(--line);
-      color: var(--muted); font-size: 13px; text-align: center;
+      color: var(--muted); font-size: 13px; text-align: center; background: #fff;
     }
 
-    /* Utility */
-    .center { text-align: center; }
-    .mt-16 { margin-top: 16px; }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav class="nav">
-    <div class="container nav-inner">
-      <div class="logo">LIBERTY IN NORTH KOREA</div>
-      <div class="nav-links">
-        <a href="#about">프로그램</a>
-        <a href="#timeline">일정</a>
-        <a href="#teams">선발 팀</a>
-        <a href="#funding">지원금</a>
-        <a href="#guide">참여 가이드</a>
-        <a href="#contact">문의</a>
+  <!-- ============ TOP-LEFT NAV BUTTONS ============ -->
+  <nav class="top-nav">
+    <div class="top-nav-inner">
+      <div class="brand">
+        <img class="logo" src="assets/link_logo_png.png" alt="Liberty in North Korea" />
+        <div class="brand-text">
+          LiNK Impact Fund Program 2026
+          <small>참여 안내 페이지</small>
+        </div>
+      </div>
+      <div class="nav-tabs" role="tablist">
+        <button class="nav-btn active" data-target="p1" role="tab"><span class="n">01</span>프로그램 소개</button>
+        <button class="nav-btn" data-target="p2" role="tab"><span class="n">02</span>기간 및 일정</button>
+        <button class="nav-btn" data-target="p3" role="tab"><span class="n">03</span>워크숍 & JSU</button>
+        <button class="nav-btn" data-target="p4" role="tab"><span class="n">04</span>선발 팀</button>
+        <button class="nav-btn" data-target="p5" role="tab"><span class="n">05</span>Contact &amp; 가이드</button>
       </div>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <header class="hero">
-    <div class="container">
-      <span class="hero-eyebrow">LiNK Impact Fund Program 2026</span>
-      <h1>
-        8개월의 여정을<br />
-        <span class="accent">함께 시작합니다.</span>
-      </h1>
-      <p class="lead">
-        선발된 6팀과 모든 멤버가 알아야 할 프로그램 안내와 참여 가이드를
-        한 페이지에 담았습니다. 여러분의 활동이 더 큰 변화로 이어지도록,
-        링크가 곁에서 함께하겠습니다.
-      </p>
-      <div class="hero-meta">
-        <span class="chip">📅 <strong>2026.7 → 2027.2</strong></span>
-        <span class="chip">👥 <strong>선발 6팀</strong></span>
-        <span class="chip">💰 <strong>프로젝트당 최대 1,000만원</strong></span>
-        <span class="chip">📍 <strong>서울 · 하이브리드</strong></span>
+  <!-- ================================================================== -->
+  <!-- ============  PAGE 1 · 프로그램 소개 · 배경 · 목표  ============= -->
+  <!-- ================================================================== -->
+  <div class="page active" id="p1">
+    <header class="hero">
+      <div class="orn orn-ast-1" aria-hidden="true">
+        <svg viewBox="0 0 100 100"><g fill="#DD3928">
+          <rect x="44" y="4" width="12" height="92" rx="3"/>
+          <rect x="4" y="44" width="92" height="12" rx="3"/>
+          <rect x="44" y="4" width="12" height="92" rx="3" transform="rotate(45 50 50)"/>
+          <rect x="44" y="4" width="12" height="92" rx="3" transform="rotate(-45 50 50)"/>
+        </g></svg>
       </div>
-    </div>
-  </header>
+      <div class="orn orn-circ-g" aria-hidden="true"></div>
+      <div class="orn orn-circ-y" aria-hidden="true"></div>
+      <div class="orn orn-sparkle" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 0 L14 10 L24 12 L14 14 L12 24 L10 14 L0 12 L10 10 Z" fill="#fff"/></svg>
+      </div>
+      <div class="sand-wave" aria-hidden="true"></div>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="container">
-      <span class="sec-num">01 · 링크 소개 & 프로그램 배경</span>
-      <h2 class="sec-title">"모든 북한 사람들이 자유롭게 사는 세상"</h2>
-      <p class="sec-sub">
-        링크의 비전을 우리 생애 내에 실현하고자 합니다. 이 일을 협력하여 앞당기기 위해,
-        탈북민 청년 활동가들과 함께하는 <strong>북한 인권 활동가 지원금 프로그램</strong>을 진행합니다.
-      </p>
-
-      <div class="grid-3" style="margin-top: 40px;">
-        <div class="bg-card red">
-          <h3>역량 격차</h3>
-          <p>미션의 시급성에 비해 운영 보안과 재정적 기반이 뒤따르지 못하는 "역량 격차" 문제에 많은 단체가 직면해 있습니다.</p>
-        </div>
-        <div class="bg-card blue">
-          <h3>세대 전환</h3>
-          <p>북한 인권 운동 내 중요한 세대 전환이 진행 중이지만, 새로운 세대 리더를 위한 맞춤형 지원은 여전히 부족합니다.</p>
-        </div>
-        <div class="bg-card green">
-          <h3>전략가로의 성장</h3>
-          <p>자금·역량 기회가 줄어드는 지금, 활동가를 단순한 증인이 아닌 지속 가능한 조직 리더, 전략가로 키우는 것이 중요합니다.</p>
+      <div class="container">
+        <span class="hero-badge">링크 2026</span>
+        <h1>
+          임팩트 펀드 프로그램<br>
+          참여 <span class="accent">안내</span>
+        </h1>
+        <p class="lead">
+          LiNK Impact Fund Program 2026 — 8개월의 여정을 함께 시작합니다.<br>
+          선발된 6팀과 모든 멤버가 알아야 할 프로그램 안내와 참여 가이드를 한 페이지에 담았습니다.
+        </p>
+        <div class="hero-meta">
+          <span class="chip"><span class="dot"></span>2026.7 → 2027.2</span>
+          <span class="chip blue"><span class="dot"></span>선발 6팀</span>
+          <span class="chip green"><span class="dot"></span>최대 1,000만원</span>
+          <span class="chip yellow"><span class="dot"></span>서울 · 하이브리드</span>
         </div>
       </div>
-    </div>
-  </section>
+    </header>
 
-  <!-- PROGRAM OVERVIEW -->
-  <section style="background: var(--bg); padding-top: 96px;">
-    <div class="container">
-      <span class="sec-num">02 · 프로그램 소개</span>
-      <h2 class="sec-title">두 가지를 함께 지원합니다</h2>
-      <p class="sec-sub">단순한 자금 지원을 넘어, 지속 가능한 활동을 위한 실질적 역량까지 함께 성장합니다.</p>
+    <!-- 링크 소개 & 배경 -->
+    <section class="sec-sand" style="padding-top: 100px;">
+      <div class="orn" style="top: 8%; right: 6%; width: 80px; height: 80px;">
+        <svg viewBox="0 0 100 100"><g fill="#DD3928">
+          <rect x="44" y="4" width="12" height="92" rx="3"/>
+          <rect x="4" y="44" width="92" height="12" rx="3"/>
+          <rect x="44" y="4" width="12" height="92" rx="3" transform="rotate(45 50 50)"/>
+          <rect x="44" y="4" width="12" height="92" rx="3" transform="rotate(-45 50 50)"/>
+        </g></svg>
+      </div>
+      <div class="container">
+        <span class="pill red">링크 소개</span>
+        <h2 class="big-title">"모든 북한 사람들이 자유롭게 사는 세상"</h2>
+        <p class="big-sub">
+          링크의 비전을 우리 생애 내에 실현하고자 합니다. 이 일을 협력하여 앞당기기 위해,
+          탈북민 청년 활동가들과 함께하는 <strong>북한 인권 활동가 지원금 프로그램</strong>을 진행합니다.
+        </p>
 
-      <div class="grid-2" style="margin-top: 40px;">
-        <div class="support-card red">
-          <span class="badge">프로젝트 자금</span>
-          <h3>실행에 필요한 자금 지원</h3>
-          <p>한국 내 탈북민 청년 활동가 그룹의 프로젝트 실행에 필요한 자금을 지원합니다.</p>
-          <span class="highlight">프로젝트별 최대 1,000만원</span>
-        </div>
-        <div class="support-card blue">
-          <span class="badge">실질적 역량 교육</span>
-          <h3>지속 가능한 활동을 위한 교육</h3>
-          <p>조직 운영 · 재정 · 보안 · 리더십 등 전문 역량 교육을 함께 제공하여, 활동가로서 안정적으로 성장할 수 있도록 돕습니다.</p>
-          <span class="highlight" style="color: var(--link-blue);">3회 워크숍 · 7회 북클럽</span>
+        <div style="margin-top: 60px;">
+          <span class="pill green">프로그램 시작 배경</span>
+          <h2 class="big-title" style="margin-bottom: 40px;">활동의 영향력은 크지만,<br>그것을 떠받칠 기반은 부족합니다.</h2>
+
+          <div class="reason-grid">
+            <div class="reason">
+              <h3>역량 격차</h3>
+              <p>미션의 시급성에 비해 운영 보안과 재정적 기반이 뒤따르지 못하는 "역량 격차" 문제에 많은 단체가 직면해 있습니다.</p>
+            </div>
+            <div class="reason blue">
+              <h3>세대 전환</h3>
+              <p>북한 인권 운동 내 중요한 세대 전환이 진행 중이지만, 새로운 세대 리더를 위한 맞춤형 지원은 여전히 부족합니다.</p>
+            </div>
+            <div class="reason green">
+              <h3>전략가로의 성장</h3>
+              <p>자금·역량 기회가 줄어드는 지금, 활동가를 단순한 증인이 아닌 지속 가능한 조직 리더, 전략가로 키우는 것이 중요합니다.</p>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <!-- Goals -->
-      <div style="margin-top: 80px;">
-        <span class="sec-num">03 · 프로그램 목표</span>
-        <h2 class="sec-title">8개월 동안 이루고자 하는 세 가지</h2>
+    <!-- 프로그램 소개 & 목표 -->
+    <section class="sec-white">
+      <div class="container">
+        <span class="pill blue">프로그램 소개</span>
+        <h2 class="big-title">두 가지를 함께 지원합니다.</h2>
+        <p class="big-sub">단순한 자금 지원을 넘어, 지속 가능한 활동을 위한 실질적 역량까지 함께 성장합니다.</p>
 
-        <div class="goals" style="margin-top: 40px;">
-          <div class="goal-row">
-            <div class="goal-num">01</div>
-            <div>
+        <div class="grid-2" style="margin-top: 20px;">
+          <div class="support red">
+            <span class="badge">프로젝트 자금</span>
+            <h3>실행에 필요한 자금 지원</h3>
+            <p>한국 내 탈북민 청년 활동가 그룹의 프로젝트 실행에 필요한 자금을 지원합니다.</p>
+            <span class="hl">프로젝트별 최대 1,000만원</span>
+          </div>
+          <div class="support blue">
+            <span class="badge">실질적 역량 교육</span>
+            <h3>지속 가능한 활동을 위한 교육</h3>
+            <p>조직 운영 · 재정 · 보안 · 리더십 등 지속 가능한 활동을 위한 전문 역량 교육을 함께 제공합니다.</p>
+            <span class="hl">3회 워크숍 · 7회 북클럽</span>
+          </div>
+        </div>
+
+        <div style="margin-top: 100px;">
+          <span class="pill yellow">프로그램 목표</span>
+          <h2 class="big-title" style="margin-bottom: 48px;">8개월 동안 이루고자 하는 세 가지</h2>
+
+          <div class="goals-grid">
+            <div class="goal">
+              <div class="num">01</div>
               <h4>임팩트 가속화</h4>
               <p>8개월 내 가시적인 성과를 낼 수 있는 프로젝트를 직접 기획·실행합니다.</p>
             </div>
-          </div>
-          <div class="goal-row">
-            <div class="goal-num">02</div>
-            <div>
+            <div class="goal">
+              <div class="num">02</div>
               <h4>전문적 역량 강화</h4>
               <p>조직 운영·재정 관리·사이버 보안·리더십 등 실질 역량을 갖추어 안정적으로 활동하고 네트워크를 보호합니다.</p>
             </div>
-          </div>
-          <div class="goal-row">
-            <div class="goal-num">03</div>
-            <div>
+            <div class="goal">
+              <div class="num">03</div>
               <h4>협력 문화·연대 강화</h4>
               <p>탈북민 활동가 커뮤니티 안에서 서로 협력하고 연대하는 문화를 만들어 나갑니다.</p>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- STATS -->
-  <section class="stats-band">
-    <div class="container">
-      <div class="stats-grid">
-        <div class="stat-item hl">
-          <div class="num">6<em>팀</em></div>
-          <div class="label">선발 그룹 (신생 3 · 기존 3)</div>
-        </div>
-        <div class="stat-item">
-          <div class="num">3:1</div>
-          <div class="label">선발 경쟁률</div>
-        </div>
-        <div class="stat-item">
-          <div class="num">8<em>개월</em></div>
-          <div class="label">프로그램 기간</div>
-        </div>
-        <div class="stat-item">
-          <div class="num">1,000<em>만원</em></div>
-          <div class="label">프로젝트별 최대 지원금</div>
+        <div class="page-nav">
+          <span></span>
+          <a class="next" data-goto="p2">다음 · 기간 및 일정 →</a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
-  <!-- TIMELINE -->
-  <section id="timeline">
-    <div class="container">
-      <span class="sec-num">04 · 프로그램 일정</span>
-      <h2 class="sec-title">8개월의 여정</h2>
-      <p class="sec-sub">2026년 7월부터 2027년 2월까지, 함께 걸어가는 주요 마일스톤입니다.</p>
+  <!-- ================================================================== -->
+  <!-- ============       PAGE 2 · 기간 및 일정            ============= -->
+  <!-- ================================================================== -->
+  <div class="page" id="p2">
+    <header class="page-header sec-sky">
+      <div class="orn" style="top: 20%; right: 8%; width: 90px; height: 90px;">
+        <svg viewBox="0 0 100 100"><g fill="#DD3928">
+          <rect x="44" y="4" width="12" height="92" rx="3"/>
+          <rect x="4" y="44" width="92" height="12" rx="3"/>
+          <rect x="44" y="4" width="12" height="92" rx="3" transform="rotate(45 50 50)"/>
+          <rect x="44" y="4" width="12" height="92" rx="3" transform="rotate(-45 50 50)"/>
+        </g></svg>
+      </div>
+      <div class="orn" style="top: 12%; right: 22%; width: 70px; height: 70px; background: var(--link-green); border-radius: 50%;"></div>
+      <div class="orn" style="top: 30%; right: 18%; width: 50px; height: 50px; background: var(--link-yellow); border-radius: 50%;"></div>
+      <div class="container">
+        <span class="pill blue">프로그램 기간 및 일정</span>
+        <h1>8개월의 여정<br><span style="color: var(--link-red);">함께 걷는 길</span></h1>
+        <p>2026년 7월부터 2027년 2월까지, 여러분과 함께할 주요 마일스톤을 안내드립니다.</p>
+      </div>
+    </header>
 
-      <div class="timeline" style="margin-top: 48px;">
-        <div class="tl-item">
-          <div class="tl-date">2026. 6. 27 (서울)</div>
-          <div class="tl-title">OT + 1차 워크숍</div>
-          <div class="tl-desc">오리엔테이션 종료 직후 1차 워크숍(조직 운영)을 연속 진행합니다.</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-date">2026. 6 ~ 12 · 총 3회</div>
-          <div class="tl-title">역량강화 워크숍</div>
-          <div class="tl-desc">조직 운영 · 리더십(7/21) · IT 보안(9/12) · (필요시) AI+회계</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-date">2026. 8 ~ 2027. 1 · 총 7회 · 하이브리드</div>
-          <div class="tl-title">JSU 북클럽</div>
-          <div class="tl-desc">월 정기 북클럽 모임을 통해 함께 읽고 이야기 나누며 탈북민 활동가 커뮤니티가 연대합니다.</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-date">2026. 7 ~ 2027. 1</div>
-          <div class="tl-title">월별 체크인 & 격월 보고서</div>
-          <div class="tl-desc">월별 체크인 전화 & 격월 마지막 주 목요일 활동 보고서·지출 증빙 제출</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-date">2026. 11. 4 ~ 6</div>
-          <div class="tl-title">중간 점검 (그룹별)</div>
-          <div class="tl-desc">3일간 오전·오후에 걸쳐 그룹별 30분 구글 화상통화로 진행됩니다.</div>
-        </div>
-        <div class="tl-item final">
-          <div class="tl-date">2027. 2. 27 (토)</div>
-          <div class="tl-title">최종 활동 발표회</div>
-          <div class="tl-desc">대면 발표회 — 장소 추후 공지 · 그룹 전체 참여 권장</div>
+    <!-- Stats -->
+    <section class="stats-band" style="padding: 60px 0;">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat red"><div class="num">8<em>개월</em></div><div class="label">프로그램 기간</div></div>
+          <div class="stat blue"><div class="num">6<em>팀</em></div><div class="label">선발 그룹</div></div>
+          <div class="stat green"><div class="num">10<em>회</em></div><div class="label">워크숍 · 북클럽 (3+7)</div></div>
+          <div class="stat yellow"><div class="num">3<em>차</em></div><div class="label">지원금 분할 지급</div></div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- WORKSHOPS -->
-  <section style="background: var(--bg);">
-    <div class="container">
-      <span class="sec-num">05 · 역량강화 워크숍 & JSU</span>
-      <h2 class="sec-title">필수 참여 활동 안내</h2>
-      <p class="sec-sub">
-        아래는 <strong>필수 참여 활동</strong>입니다. 불참 시 사전 고지가 필요하며, 반복 불참 시 지원이 중단될 수 있습니다.
-      </p>
+    <!-- Timeline -->
+    <section class="sec-white">
+      <div class="container">
+        <span class="pill red">주요 일정</span>
+        <h2 class="big-title">프로그램 마일스톤</h2>
+        <p class="big-sub">OT부터 최종 발표회까지, 8개월간의 흐름입니다.</p>
 
-      <h3 style="font-size: 18px; margin: 40px 0 16px; display: flex; align-items: center; gap: 10px;">
-        역량강화 워크숍
-        <span style="font-size: 12px; font-weight: 700; padding: 4px 10px; background: var(--link-red); color: #fff; border-radius: 999px;">총 3회 필수</span>
-      </h3>
-      <div class="ws-list">
-        <div class="ws-item">
-          <div class="ws-date">7/21 (화) <small>19–21시</small></div>
-          <div class="ws-name"><strong>리더십</strong> · 대표 필수, 그룹원 선택</div>
-          <div class="ws-tag">1차</div>
-        </div>
-        <div class="ws-item">
-          <div class="ws-date">9/12 (토) <small>14–16시</small></div>
-          <div class="ws-name"><strong>IT 보안</strong> · 북한인권 활동가 모두 참여 가능</div>
-          <div class="ws-tag">2차</div>
-        </div>
-        <div class="ws-item">
-          <div class="ws-date">10월 중 <small>추후 공지</small></div>
-          <div class="ws-name"><strong>재무 관리</strong> · 세부 사항 추후 공지</div>
-          <div class="ws-tag">3차</div>
-        </div>
-      </div>
-
-      <h3 style="font-size: 18px; margin: 48px 0 16px; display: flex; align-items: center; gap: 10px;">
-        JSU 북클럽
-        <span style="font-size: 12px; font-weight: 700; padding: 4px 10px; background: var(--link-blue); color: #fff; border-radius: 999px;">총 7회 필수</span>
-      </h3>
-      <div class="ws-item" style="background: #fff;">
-        <div class="ws-date">2026. 8 ~ 2027. 1 <small>매월 정기 모임</small></div>
-        <div class="ws-name">
-          탈북민 청년 활동가들이 <strong>함께 읽고 이야기 나누며</strong> 서로의 활동을 공유하고 연대하는 시간입니다.
-        </div>
-        <div class="ws-tag" style="background: #D8EEF7; color: #1F7FA0;">하이브리드</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TEAMS -->
-  <section id="teams">
-    <div class="container">
-      <span class="sec-num">06 · 선발 팀 소개</span>
-      <h2 class="sec-title">함께 걸어갈 6팀</h2>
-      <p class="sec-sub">
-        인식 개선·인권 옹호부터 알 권리 증진, 커뮤니티 빌딩까지 — 다양한 영역에서 활동을 이어갈 팀들입니다.
-      </p>
-
-      <div class="teams-grid" style="margin-top: 48px;">
-
-        <article class="team-card">
-          <div class="idx">01 / 06</div>
-          <h4>진실의 등대</h4>
-          <div class="meta">신생 그룹 · 5~6명 (북한 출신 연구자 중심)</div>
-          <div class="team-tags">
-            <span class="tag blue">알 권리 증진</span>
-            <span class="tag blue">콘텐츠·기술 개발</span>
-            <span class="tag green">커뮤니티 빌딩</span>
+        <div class="timeline-list">
+          <div class="tl-row">
+            <div class="tl-left">
+              <h4>OT + 1차 워크숍</h4>
+              <div class="date">2026. 6. 27 (서울)</div>
+            </div>
+            <div class="tl-desc">오리엔테이션 종료 직후 1차 워크숍(조직 운영)을 연속 진행합니다.</div>
           </div>
-          <p>북한 당국이 왜곡·은폐한 역사적 사실을 학술적으로 재조명한 라디오 콘텐츠를 제작해 북한 내부로 송출. 8개월간 36회분 콘텐츠를 매주 제작·송출합니다.</p>
-        </article>
-
-        <article class="team-card">
-          <div class="idx">02 / 06</div>
-          <h4>조선 인터넷 방송 · KIS</h4>
-          <div class="meta">기존 단체 (2025.5 설립) · 3명 (대표·PD·CTO)</div>
-          <div class="team-tags">
-            <span class="tag blue">알 권리 증진</span>
-            <span class="tag blue">콘텐츠·기술 개발</span>
-            <span class="tag green">커뮤니티 빌딩</span>
+          <div class="tl-row">
+            <div class="tl-left">
+              <h4>역량강화 워크숍</h4>
+              <div class="date">2026. 6 ~ 12 · 총 3회</div>
+            </div>
+            <div class="tl-desc">조직 운영 · 리더십(7/21) · IT 보안(9/12) · (필요시) AI+회계</div>
           </div>
-          <p>롱폼 영상을 숏폼·카드뉴스·다국어 멀티포맷으로 변환해 정보 접근 장벽을 낮추고, 글로벌 플랫폼에 신규 채널을 구축. 탈북민 청년 크리에이터를 영입·육성합니다.</p>
-        </article>
-
-        <article class="team-card">
-          <div class="idx">03 / 06</div>
-          <h4>Draw of Dream · 꿈을 그리다</h4>
-          <div class="meta">기존 단체 (예술가 그룹) · 5인 (북한 출신 작가들)</div>
-          <div class="team-tags">
-            <span class="tag red">인식 개선·인권 옹호</span>
-            <span class="tag">콘텐츠 제작</span>
-            <span class="tag green">커뮤니티 빌딩</span>
+          <div class="tl-row">
+            <div class="tl-left">
+              <h4>JSU 북클럽</h4>
+              <div class="date">2026. 8 ~ 2027. 1 · 총 7회 · 하이브리드</div>
+            </div>
+            <div class="tl-desc">월 정기 북클럽 모임으로 탈북민 활동가 커뮤니티가 함께 읽고 이야기 나누며 연대합니다.</div>
           </div>
-          <p>북한의 일상과 탈북 청년 작가들의 시선을 담은 시각예술 전시를 기획. 북한 물품 체험, 작가와의 토크콘서트 등 참여형 프로그램으로 시민의 공감대를 형성합니다.</p>
-        </article>
-
-        <article class="team-card">
-          <div class="idx">04 / 06</div>
-          <h4>미소컬러틱</h4>
-          <div class="meta">신생 그룹 · 3인 (대표 + 홍보·운영 + 스타일링)</div>
-          <div class="team-tags">
-            <span class="tag red">인식 개선·인권 옹호</span>
-            <span class="tag">콘텐츠 제작</span>
-            <span class="tag green">커뮤니티 빌딩</span>
+          <div class="tl-row">
+            <div class="tl-left">
+              <h4>중간 점검 (그룹별)</h4>
+              <div class="date">2026. 11. 4 ~ 6</div>
+            </div>
+            <div class="tl-desc">3일간 오전·오후, 그룹별 30분 구글 화상통화로 진행됩니다.</div>
           </div>
-          <p>퍼스널 컬러·이미지 브랜딩·캔버스 아트로 탈북 청소년의 자기표현 역량을 강화하고, 색(Color)이라는 매개로 시민이 자연스럽게 인권 문제에 공감하는 참여형 애드보커시 모델을 구축합니다.</p>
-        </article>
-
-        <article class="team-card">
-          <div class="idx">05 / 06</div>
-          <h4>노라 · NORA</h4>
-          <div class="meta">신생 그룹 · 3명 (칼럼니스트·작가·전직 KBS 기자)</div>
-          <div class="team-tags">
-            <span class="tag red">인식 개선·인권 옹호</span>
-            <span class="tag">콘텐츠 제작</span>
-            <span class="tag green">커뮤니티 빌딩</span>
+          <div class="tl-row">
+            <div class="tl-left">
+              <h4>월별 체크인 & 격월 보고서</h4>
+              <div class="date">2026. 7 ~ 2027. 1</div>
+            </div>
+            <div class="tl-desc">월별 체크인 전화 & 격월 마지막 주 목요일 활동 보고서·지출 증빙 제출</div>
           </div>
-          <p>북한 내부 시스템·생활 체계·문화에 대한 심층 글쓰기 콘텐츠를 네이버 블로그에 연재하고 유튜브로 확산. 단편적 뉴스를 넘어 북한을 깊이 있게 이해할 수 있는 전문 콘텐츠 플랫폼을 구축합니다.</p>
-        </article>
-
-        <article class="team-card">
-          <div class="idx">06 / 06</div>
-          <h4>체인져스 · Changers</h4>
-          <div class="meta">기존 단체 · 11명</div>
-          <div class="team-tags">
-            <span class="tag red">인식 개선·인권 옹호</span>
-            <span class="tag green">커뮤니티 빌딩</span>
+          <div class="tl-row">
+            <div class="tl-left">
+              <h4>최종 활동 발표회</h4>
+              <div class="date">2027. 2. 27 (토)</div>
+            </div>
+            <div class="tl-desc">대면 발표회 — 장소 추후 공지 · 그룹 전체 참여 권장</div>
           </div>
-          <p>탈북 청년 커뮤니티 빌딩 및 주요 어젠다 논의 워크숍을 진행. 활동가들이 함께 모여 방향을 논의하고 연대하는 장을 만들어, 커뮤니티 전반의 역량을 끌어올립니다.</p>
-        </article>
-
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FUNDING -->
-  <section id="funding" style="background: var(--bg);">
-    <div class="container">
-      <span class="sec-num">07 · 지원금 지급 기준 및 일정</span>
-      <h2 class="sec-title">3차에 걸쳐 단계적으로 지급됩니다</h2>
-      <p class="sec-sub">프로젝트별 최대 1,000만원, 지출 내역과 활동 보고서 검토를 거쳐 순차적으로 지급됩니다.</p>
+    <!-- 지원금 지급 -->
+    <section class="sec-cream">
+      <div class="container">
+        <span class="pill red">지원금 지급 기준 및 일정</span>
+        <h2 class="big-title">3차에 걸쳐 단계적으로 지급됩니다.</h2>
+        <p class="big-sub">프로젝트별 최대 1,000만원 · 지출 내역과 활동 보고서 검토를 거쳐 순차적으로 지급됩니다.</p>
 
-      <div class="table-wrap" style="margin-top: 40px;">
-        <table>
-          <thead>
-            <tr>
-              <th style="width: 80px;">구분</th>
-              <th>시기</th>
-              <th style="width: 160px;">지급 날짜</th>
-              <th style="width: 100px; text-align: right;">비율</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="stage">1차</td>
-              <td>양 당사자의 본 약정서 서명 시</td>
-              <td>7월 1일</td>
-              <td class="pct" style="text-align: right;">30%</td>
-            </tr>
-            <tr>
-              <td class="stage">2차</td>
-              <td>1차 지출 내역·활동 보고서 검토·승인 후</td>
-              <td>9월 1일</td>
-              <td class="pct" style="text-align: right;">40%</td>
-            </tr>
-            <tr>
-              <td class="stage">3차</td>
-              <td>2차 지출 내역·활동 보고서 검토·승인 및 중간 점검 후</td>
-              <td>12월 1일</td>
-              <td class="pct" style="text-align: right;">30%</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 90px;">구분</th>
+                <th>시기</th>
+                <th style="width: 160px;">지급 날짜</th>
+                <th style="width: 100px; text-align: right;">비율</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="stage">1차</td>
+                <td>양 당사자의 본 약정서 서명 시</td>
+                <td>7월 1일</td>
+                <td class="pct" style="text-align: right;">30%</td>
+              </tr>
+              <tr>
+                <td class="stage">2차</td>
+                <td>1차 지출 내역·활동 보고서 검토·승인 후</td>
+                <td>9월 1일</td>
+                <td class="pct" style="text-align: right;">40%</td>
+              </tr>
+              <tr>
+                <td class="stage">3차</td>
+                <td>2차 지출 내역·활동 보고서 검토·승인 및 중간 점검 후</td>
+                <td>12월 1일</td>
+                <td class="pct" style="text-align: right;">30%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="page-nav">
+          <a data-goto="p1">← 이전 · 프로그램 소개</a>
+          <a class="next" data-goto="p3">다음 · 워크숍 & JSU →</a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
-  <!-- GUIDE -->
-  <section id="guide">
-    <div class="container">
-      <span class="sec-num">08 · 프로그램 참여 가이드</span>
-      <h2 class="sec-title">함께 지켜 주세요</h2>
-      <p class="sec-sub">선발된 모든 그룹과 멤버가 프로그램이 안전하고 건강하게 운영될 수 있도록 함께 지켜 주셔야 할 사항입니다.</p>
+  <!-- ================================================================== -->
+  <!-- ============      PAGE 3 · 워크숍 & JSU            ============= -->
+  <!-- ================================================================== -->
+  <div class="page" id="p3">
+    <header class="page-header sec-sand">
+      <div class="orn" style="top: 20%; right: 6%; width: 90px; height: 90px;">
+        <svg viewBox="0 0 100 100"><g fill="#DD3928">
+          <rect x="44" y="4" width="12" height="92" rx="3"/>
+          <rect x="4" y="44" width="92" height="12" rx="3"/>
+          <rect x="44" y="4" width="12" height="92" rx="3" transform="rotate(45 50 50)"/>
+          <rect x="44" y="4" width="12" height="92" rx="3" transform="rotate(-45 50 50)"/>
+        </g></svg>
+      </div>
+      <div class="orn" style="top: 14%; right: 20%; width: 60px; height: 60px; background: var(--link-blue); border-radius: 50%;"></div>
+      <div class="container">
+        <span class="pill red">역량강화 워크숍 & JSU</span>
+        <h1>함께 배우고,<br>성장합니다.</h1>
+        <p>지속 가능한 활동을 위한 필수 역량 교육과, 서로를 알아가는 북클럽 시간입니다.</p>
+      </div>
+    </header>
 
-      <div class="guides" style="margin-top: 40px;">
-        <div class="guide">
-          <h4>함께 지켜봅시다! <span class="g-num">01</span></h4>
-          <p>링크는 <strong>비종교 · 비정치 · 비영리</strong> 단체입니다. 단톡방·공유 자료·그룹 활동에서 영리 활동, 정치적·종교적 메시지는 자제해 주세요. 신념·성향이 다르더라도 <strong>서로를 존중하는 자세</strong>로 함께해 주세요.</p>
+    <section class="sec-white">
+      <div class="container">
+        <!-- Workshops -->
+        <span class="pill red">역량강화 워크숍</span>
+        <h2 class="big-title" style="display: flex; align-items: center; flex-wrap: wrap;">
+          조직 운영 · 리더십 · IT 보안 · 재무
+          <span class="necessity" style="font-size: 14px; padding: 6px 14px; margin-left: 14px;">총 3회 필수</span>
+        </h2>
+        <p class="big-sub">각 워크숍의 일정과 참여 대상을 확인해 주세요.</p>
+
+        <div class="ws-list">
+          <div class="ws">
+            <div class="ws-date">7/21 (화) 19–21시<small>1차 워크숍</small></div>
+            <div class="ws-name"><strong>리더십</strong> · 대표 필수, 그룹원 선택 참여</div>
+            <div class="ws-tag">1차</div>
+          </div>
+          <div class="ws">
+            <div class="ws-date">9/12 (토) 14–16시<small>2차 워크숍</small></div>
+            <div class="ws-name"><strong>IT 보안</strong> · 북한인권 활동가 모두 참여 가능</div>
+            <div class="ws-tag blue">2차</div>
+          </div>
+          <div class="ws">
+            <div class="ws-date">10월 중<small>세부 사항 추후 공지</small></div>
+            <div class="ws-name"><strong>재무 관리</strong> · 활동가에게 필요한 회계·재정 관리 실무</div>
+            <div class="ws-tag green">3차</div>
+          </div>
         </div>
-        <div class="guide">
-          <h4>콘텐츠 및 활동의 자율성 <span class="g-num">02</span></h4>
-          <ul>
-            <li>예술 활동 그룹 — 활동 목적 내에서 창의성·개성을 담아 표현</li>
-            <li>칼럼·글쓰기·미디어 — 주제·관점 자율, 지나친 정치·종교적 서사 지양</li>
-            <li>계획서 목적·방향 변경 시 사전에 담당자와 상의</li>
-          </ul>
+
+        <!-- JSU -->
+        <div style="margin-top: 80px;">
+          <span class="pill blue">JSU 북클럽</span>
+          <h2 class="big-title" style="display: flex; align-items: center; flex-wrap: wrap;">
+            함께 읽고, 나누고, 연대합니다.
+            <span class="necessity blue" style="font-size: 14px; padding: 6px 14px; margin-left: 14px;">총 7회 필수</span>
+          </h2>
+          <p class="big-sub">2026년 8월 ~ 2027년 1월, 매월 정기적으로 모이는 북클럽입니다. 탈북민 청년 활동가들이 함께 읽고 이야기 나누며 서로의 활동을 공유하고 연대하는 시간입니다.</p>
+
+          <div class="ws">
+            <div class="ws-date">2026. 8 ~ 2027. 1<small>매월 정기 모임 · 총 7회</small></div>
+            <div class="ws-name">
+              <strong>JSU (Just Show Up) 북클럽</strong> — 함께 읽고 대화하며, 서로의 활동을 나누고 커뮤니티로 연결됩니다.
+            </div>
+            <div class="ws-tag blue">하이브리드</div>
+          </div>
         </div>
-        <div class="guide">
-          <h4>보안 수칙 <span class="g-num">03</span></h4>
-          <ul>
-            <li>의심스러운 링크는 전달·업로드 및 클릭 금지</li>
-            <li>참가자 개인정보(연락처·타 그룹 멤버 정보) 외부 공유 금지</li>
-            <li>이메일·SNS·카톡에 <strong>2단계 인증</strong> 권장</li>
-          </ul>
+
+        <div class="warn-box">
+          ※ 필수 참여 활동 불참 시, 사전 고지가 필요하며 <strong>반복 불참 시 지원이 중단될 수 있습니다.</strong>
         </div>
-        <div class="guide">
-          <h4>활동 보고·지원금 사용 <span class="g-num">04</span></h4>
-          <ul>
-            <li>격월 활동 보고서는 <strong>기한 내 제출</strong>이 원칙</li>
-            <li>지원금은 승인된 활동 계획서 범위 내에서 사용</li>
-            <li>계획 변경 시 임의 진행 금지, 반드시 사전 협의</li>
-            <li>지출 내역은 꼼꼼히 작성해 격월로 보고</li>
-          </ul>
+
+        <div class="page-nav">
+          <a data-goto="p2">← 이전 · 기간 및 일정</a>
+          <a class="next" data-goto="p4">다음 · 선발 팀 →</a>
         </div>
-        <div class="guide">
-          <h4>콘텐츠 촬영 <span class="g-num">05</span></h4>
-          <ul>
-            <li>타 그룹·활동가들의 사진 무단 촬영 금지</li>
-            <li>얼굴이 나온 사진 촬영·게시 시 <strong>사전 허락 필수</strong></li>
-          </ul>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================================================================== -->
+  <!-- ============       PAGE 4 · 선발 팀 소개            ============= -->
+  <!-- ================================================================== -->
+  <div class="page" id="p4">
+    <header class="page-header sec-cream">
+      <div class="orn" style="top: 18%; right: 8%; width: 80px; height: 80px;">
+        <svg viewBox="0 0 100 100"><g fill="#DD3928">
+          <rect x="44" y="4" width="12" height="92" rx="3"/>
+          <rect x="4" y="44" width="92" height="12" rx="3"/>
+          <rect x="44" y="4" width="12" height="92" rx="3" transform="rotate(45 50 50)"/>
+          <rect x="44" y="4" width="12" height="92" rx="3" transform="rotate(-45 50 50)"/>
+        </g></svg>
+      </div>
+      <div class="orn" style="top: 40%; right: 4%; width: 50px; height: 50px; background: var(--link-yellow); border-radius: 50%;"></div>
+      <div class="container">
+        <span class="pill red">선발 그룹 현황</span>
+        <h1>여섯 팀과<br>함께합니다.</h1>
+        <p>인식 개선·인권 옹호부터 알 권리 증진, 커뮤니티 빌딩까지 — 다양한 영역에서 활동을 이어갈 팀들입니다.</p>
+      </div>
+    </header>
+
+    <section class="stats-band" style="padding: 60px 0;">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat red"><div class="num">6<em>팀</em></div><div class="label">선발 그룹 (신생 3 · 기존 3)</div></div>
+          <div class="stat blue"><div class="num">3:1</div><div class="label">선발 경쟁률</div></div>
+          <div class="stat green"><div class="num">30<em>+명</em></div><div class="label">참여 활동가</div></div>
+          <div class="stat yellow"><div class="num">3<em>영역</em></div><div class="label">프로젝트 영역</div></div>
         </div>
-        <div class="guide">
-          <h4>지급·참여 중단 기준 <span class="g-num">06</span></h4>
-          <ul>
-            <li>필수 참여 활동에 <strong>3회 이상 불참</strong></li>
-            <li>활동 보고서 미제출</li>
-            <li>지원금을 승인 범위 외 임의 사용</li>
-            <li>가이드 원칙 지속적 위반</li>
-          </ul>
-        </div>
-        <div class="guide" style="grid-column: 1 / -1;">
-          <h4>협력과 존중 · 청년 세대 연대 <span class="g-num">07</span></h4>
-          <div class="grid-2" style="margin-top: 10px;">
-            <div>
-              <strong style="display:block; margin-bottom:6px; color: var(--ink);">팀·멤버 간 협력과 존중</strong>
-              <ul>
-                <li>서로를 <strong>동료 활동가</strong>로 존중하며 소통</li>
-                <li>의견 차이가 있을 땐 상대의 입장을 먼저 이해</li>
-                <li>서로의 다름을 통해 배우며 관점을 확장</li>
+      </div>
+    </section>
+
+    <section class="sec-white">
+      <div class="container">
+        <span class="pill blue">선발 팀 소개</span>
+        <h2 class="big-title">팀별 프로젝트</h2>
+        <p class="big-sub">각 팀의 구성과 8개월간 진행할 주요 활동을 소개합니다.</p>
+
+        <div class="teams-list">
+
+          <article class="team-card accent-olive">
+            <div class="left">
+              <span class="big-index">01</span>
+              <div class="head">
+                <span class="badge">TEAM 01</span>
+                <span class="idx">01 / 06</span>
+              </div>
+              <div class="team-title-block">
+                <h4>진실의 등대</h4>
+                <div class="en">Lighthouse of Truth</div>
+              </div>
+              <div class="meta">
+                <span class="meta-pill">신생 그룹</span>
+                <span class="meta-pill">5~6명</span>
+                <span class="meta-pill">북한 출신 연구자 중심</span>
+              </div>
+              <div class="tags">
+                <span class="tag blue">알 권리 증진</span>
+                <span class="tag blue">콘텐츠·기술 개발</span>
+                <span class="tag green">커뮤니티 빌딩</span>
+              </div>
+            </div>
+            <div class="right">
+              <div class="kicker">Radio · Inside North Korea</div>
+              <h5>왜곡된 역사를 학술로 되찾고, 북한 내부로 다시 전하다</h5>
+              <ul class="highlights">
+                <li><span class="hl-icon">1</span><span><strong>학술 기반 라디오 콘텐츠 제작</strong> — 북한 당국이 왜곡·은폐한 역사적 사실을 재조명</span></li>
+                <li><span class="hl-icon">2</span><span><strong>북한 내부로 직접 송출</strong> — 정보 접근이 제한된 내부 청취자를 대상으로 함</span></li>
+                <li><span class="hl-icon">3</span><span><strong>8개월간 36회분 연속 제작</strong> — 매주 정기 편성 · 지속 가능한 콘텐츠 흐름</span></li>
               </ul>
             </div>
-            <div>
-              <strong style="display:block; margin-bottom:6px; color: var(--ink);">청년 세대 연대 및 협업</strong>
-              <ul>
-                <li>다른 그룹의 활동에 관심을 갖고 응원</li>
-                <li>협업·교류 가능하면 적극적으로 제안·연결</li>
-                <li>JSU(Just Show Up) 등 커뮤니티 활동으로 서로를 깊이 알아가기</li>
+          </article>
+
+          <article class="team-card accent-blue">
+            <div class="left">
+              <span class="big-index">02</span>
+              <div class="head">
+                <span class="badge">TEAM 02</span>
+                <span class="idx">02 / 06</span>
+              </div>
+              <div class="team-title-block">
+                <h4>조선 인터넷 방송</h4>
+                <div class="en">KIS · Korea Internet Service</div>
+              </div>
+              <div class="meta">
+                <span class="meta-pill">기존 단체 (2025.5)</span>
+                <span class="meta-pill">3명</span>
+                <span class="meta-pill">대표·PD·CTO</span>
+              </div>
+              <div class="tags">
+                <span class="tag blue">알 권리 증진</span>
+                <span class="tag blue">콘텐츠·기술 개발</span>
+                <span class="tag green">커뮤니티 빌딩</span>
+              </div>
+            </div>
+            <div class="right">
+              <div class="kicker">Multi-format · Global Reach</div>
+              <h5>롱폼을 숏폼·다국어로 재편, 글로벌 채널을 새로 세우다</h5>
+              <ul class="highlights">
+                <li><span class="hl-icon">1</span><span><strong>멀티포맷 변환</strong> — 롱폼 영상을 숏폼·카드뉴스·다국어로 재구성해 접근 장벽을 낮춤</span></li>
+                <li><span class="hl-icon">2</span><span><strong>글로벌 플랫폼 신규 채널 구축</strong> — 해외 시청자까지 도달하는 배포망 확장</span></li>
+                <li><span class="hl-icon">3</span><span><strong>탈북민 청년 크리에이터 육성</strong> — 차세대 콘텐츠 인력을 발굴·트레이닝</span></li>
               </ul>
             </div>
+          </article>
+
+          <article class="team-card accent-coral">
+            <div class="left">
+              <span class="big-index">03</span>
+              <div class="head">
+                <span class="badge">TEAM 03</span>
+                <span class="idx">03 / 06</span>
+              </div>
+              <div class="team-title-block">
+                <h4>Draw of Dream</h4>
+                <div class="en">꿈을 그리다</div>
+              </div>
+              <div class="meta">
+                <span class="meta-pill">기존 단체</span>
+                <span class="meta-pill">예술가 그룹</span>
+                <span class="meta-pill">5인</span>
+              </div>
+              <div class="tags">
+                <span class="tag red">인식 개선·인권 옹호</span>
+                <span class="tag">콘텐츠 제작</span>
+                <span class="tag green">커뮤니티 빌딩</span>
+              </div>
+            </div>
+            <div class="right">
+              <div class="kicker">Exhibition · Art & Empathy</div>
+              <h5>탈북 청년 작가의 시선으로 북한의 일상을 그리다</h5>
+              <ul class="highlights">
+                <li><span class="hl-icon">1</span><span><strong>시각예술 전시 기획</strong> — 북한의 일상과 탈북 작가의 시선을 시각 언어로 풀어냄</span></li>
+                <li><span class="hl-icon">2</span><span><strong>참여형 프로그램</strong> — 북한 물품 체험 · 작가와의 토크콘서트로 관람객과 직접 접촉</span></li>
+                <li><span class="hl-icon">3</span><span><strong>시민 공감대 형성</strong> — 예술을 매개로 인권 이슈에 대한 자연스러운 대화 창구 마련</span></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="team-card accent-purple">
+            <div class="left">
+              <span class="big-index">04</span>
+              <div class="head">
+                <span class="badge">TEAM 04</span>
+                <span class="idx">04 / 06</span>
+              </div>
+              <div class="team-title-block">
+                <h4>미소컬러틱</h4>
+                <div class="en">Miso Colortic</div>
+              </div>
+              <div class="meta">
+                <span class="meta-pill">신생 그룹</span>
+                <span class="meta-pill">3인</span>
+                <span class="meta-pill">대표·홍보운영·스타일링</span>
+              </div>
+              <div class="tags">
+                <span class="tag red">인식 개선·인권 옹호</span>
+                <span class="tag">콘텐츠 제작</span>
+                <span class="tag green">커뮤니티 빌딩</span>
+              </div>
+            </div>
+            <div class="right">
+              <div class="kicker">Color · Youth Empowerment</div>
+              <h5>색으로 자기를 표현하고, 시민이 함께 공감하는 애드보커시</h5>
+              <ul class="highlights">
+                <li><span class="hl-icon">1</span><span><strong>퍼스널 컬러 · 이미지 브랜딩</strong> — 탈북 청소년의 자기표현 역량 강화</span></li>
+                <li><span class="hl-icon">2</span><span><strong>캔버스 아트 워크숍</strong> — 색(Color)이라는 감각적 매개로 창작 경험 제공</span></li>
+                <li><span class="hl-icon">3</span><span><strong>참여형 애드보커시 모델</strong> — 시민이 자연스럽게 인권 문제에 다가서는 접점 설계</span></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="team-card accent-red">
+            <div class="left">
+              <span class="big-index">05</span>
+              <div class="head">
+                <span class="badge">TEAM 05</span>
+                <span class="idx">05 / 06</span>
+              </div>
+              <div class="team-title-block">
+                <h4>노라 · NORA</h4>
+                <div class="en">단체명 NORA는 희곡 『인형의 집』의 주인공 노라에서 따온 이름으로, 억압적인 삶을 벗어나 자기 삶을 선택하는 가치를 담고 있습니다.</div>
+              </div>
+              <div class="meta">
+                <span class="meta-pill">신생 그룹</span>
+                <span class="meta-pill">3명</span>
+                <span class="meta-pill">칼럼니스트·작가·전 KBS 기자</span>
+              </div>
+              <div class="tags">
+                <span class="tag red">인식 개선·인권 옹호</span>
+                <span class="tag">콘텐츠 제작</span>
+                <span class="tag green">커뮤니티 빌딩</span>
+              </div>
+            </div>
+            <div class="right">
+              <div class="kicker">Longform · Deep Understanding</div>
+              <h5>단편 뉴스를 넘어, 북한을 깊이 이해하는 전문 플랫폼</h5>
+              <ul class="highlights">
+                <li><span class="hl-icon">1</span><span><strong>심층 글쓰기 콘텐츠 연재</strong> — 북한 내부 시스템·생활 체계·문화 이해</span></li>
+                <li><span class="hl-icon">2</span><span><strong>네이버 블로그 + 유튜브 확산</strong> — 텍스트 기반 자산을 영상으로 재확장</span></li>
+                <li><span class="hl-icon">3</span><span><strong>전문 콘텐츠 플랫폼 구축</strong> — 단편적 뉴스가 놓치는 맥락을 아카이빙</span></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="team-card accent-green">
+            <div class="left">
+              <span class="big-index">06</span>
+              <div class="head">
+                <span class="badge">TEAM 06</span>
+                <span class="idx">06 / 06</span>
+              </div>
+              <div class="team-title-block">
+                <h4>체인져스</h4>
+                <div class="en">Changers</div>
+              </div>
+              <div class="meta">
+                <span class="meta-pill">기존 단체</span>
+                <span class="meta-pill">11명</span>
+                <span class="meta-pill">탈북 청년 커뮤니티</span>
+              </div>
+              <div class="tags">
+                <span class="tag red">인식 개선·인권 옹호</span>
+                <span class="tag green">커뮤니티 빌딩</span>
+              </div>
+            </div>
+            <div class="right">
+              <div class="kicker">Community · Solidarity</div>
+              <h5>탈북 청년들이 함께 모여 방향을 논의하고 연대하는 장</h5>
+              <ul class="highlights">
+                <li><span class="hl-icon">1</span><span><strong>커뮤니티 빌딩 프로그램</strong> — 탈북 청년들의 정기 만남과 관계 자산 형성</span></li>
+                <li><span class="hl-icon">2</span><span><strong>주요 어젠다 워크숍</strong> — 활동가들이 방향과 이슈를 함께 논의</span></li>
+                <li><span class="hl-icon">3</span><span><strong>커뮤니티 역량 강화</strong> — 개별 팀을 넘어 전체 씬의 임팩트를 끌어올림</span></li>
+              </ul>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="page-nav">
+          <a data-goto="p3">← 이전 · 워크숍 & JSU</a>
+          <a class="next" data-goto="p5">다음 · Contact &amp; 가이드 →</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================================================================== -->
+  <!-- ============        PAGE 5 · 참여 가이드            ============= -->
+  <!-- ================================================================== -->
+  <div class="page" id="p5">
+    <header class="page-header sec-sky">
+      <div class="orn" style="top: 20%; right: 8%; width: 90px; height: 90px;">
+        <svg viewBox="0 0 100 100"><g fill="#DD3928">
+          <rect x="44" y="4" width="12" height="92" rx="3"/>
+          <rect x="4" y="44" width="92" height="12" rx="3"/>
+          <rect x="44" y="4" width="12" height="92" rx="3" transform="rotate(45 50 50)"/>
+          <rect x="44" y="4" width="12" height="92" rx="3" transform="rotate(-45 50 50)"/>
+        </g></svg>
+      </div>
+      <div class="orn" style="top: 14%; right: 22%; width: 70px; height: 70px; background: var(--link-green); border-radius: 50%;"></div>
+      <div class="orn" style="top: 34%; right: 4%; width: 50px; height: 50px; background: var(--link-yellow); border-radius: 50%;"></div>
+      <div class="container">
+        <span class="pill green">프로그램 참여 가이드</span>
+        <h1>함께 지켜볼까요?</h1>
+        <p>선발된 모든 그룹과 멤버가 프로그램이 안전하고 건강하게 운영될 수 있도록 함께 지켜 주셔야 할 사항입니다.</p>
+      </div>
+    </header>
+
+    <section class="sec-white">
+      <div class="container">
+        <span class="pill red">7가지 가이드</span>
+        <h2 class="big-title">참여 원칙</h2>
+        <p class="big-sub">모든 항목을 꼼꼼히 읽고, 함께 지켜 주세요.</p>
+
+        <div class="g-actions">
+          <button type="button" id="guide-expand-all">모두 펼치기</button>
+          <button type="button" id="guide-collapse-all">모두 접기</button>
+        </div>
+
+        <div class="guide-accordion" id="guideAccordion">
+
+          <!-- 1. 단체 정체성 -->
+          <article class="guide-item" data-color="red">
+            <div class="g-head" role="button" tabindex="0" aria-expanded="false">
+              <div class="g-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              </div>
+              <div class="g-title-block">
+                <div class="g-eyebrow">Principle 01 · Identity</div>
+                <h4>링크는 비종교 · 비정치 · 비영리 단체입니다</h4>
+              </div>
+              <span class="g-num-pill">1 / 7</span>
+              <span class="g-chevron">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </span>
+            </div>
+            <div class="g-body">
+              <div class="g-body-inner">
+                <p class="g-lead">단톡방·공유 자료·그룹 활동에서 영리 활동, 정치적·종교적 메시지는 자제해 주세요. 신념·성향이 다르더라도 <strong>서로를 존중하는 자세</strong>로 함께해 주세요.</p>
+                <div class="g-do-dont">
+                  <div class="g-col do">
+                    <h6>권장 · Do</h6>
+                    <ul>
+                      <li>서로 다른 배경·신념을 존중하는 대화</li>
+                      <li>활동 목적에 부합하는 콘텐츠 공유</li>
+                      <li>공적 · 중립적인 어조 유지</li>
+                    </ul>
+                  </div>
+                  <div class="g-col dont">
+                    <h6>지양 · Don't</h6>
+                    <ul>
+                      <li>영리 목적의 홍보 · 판매 활동</li>
+                      <li>정치적 · 종교적 메시지 전파</li>
+                      <li>특정 이념 · 성향의 강요</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 2. 자율성 -->
+          <article class="guide-item" data-color="blue">
+            <div class="g-head" role="button" tabindex="0" aria-expanded="false">
+              <div class="g-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20l9-9-4-4-9 9v4z"/><path d="M14.5 6.5l3 3"/></svg>
+              </div>
+              <div class="g-title-block">
+                <div class="g-eyebrow">Principle 02 · Autonomy</div>
+                <h4>콘텐츠 및 활동의 자율성</h4>
+              </div>
+              <span class="g-num-pill">2 / 7</span>
+              <span class="g-chevron">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </span>
+            </div>
+            <div class="g-body">
+              <div class="g-body-inner">
+                <p class="g-lead">각 팀의 창의성과 자율성을 존중합니다. 다만 활동 목적에서 벗어난 방향 전환은 담당자와의 사전 논의를 원칙으로 합니다.</p>
+                <ul class="g-checklist">
+                  <li><span class="g-check">✓</span><span><strong>예술 활동 그룹</strong> — 활동 목적 내에서 창의성·개성을 담아 자유롭게 표현</span></li>
+                  <li><span class="g-check">✓</span><span><strong>칼럼·글쓰기·미디어</strong> — 주제·관점 자율, 지나친 정치·종교적 서사 지양</span></li>
+                  <li><span class="g-check">✓</span><span><strong>방향 전환 시</strong> — 계획서 목적·방향 변경은 사전에 담당자와 상의</span></li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- 3. 보안 -->
+          <article class="guide-item" data-color="yellow">
+            <div class="g-head" role="button" tabindex="0" aria-expanded="false">
+              <div class="g-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+              </div>
+              <div class="g-title-block">
+                <div class="g-eyebrow">Principle 03 · Security</div>
+                <h4>보안 수칙</h4>
+              </div>
+              <span class="g-num-pill">3 / 7</span>
+              <span class="g-chevron">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </span>
+            </div>
+            <div class="g-body">
+              <div class="g-body-inner">
+                <p class="g-lead">활동가와 참여자의 안전을 지키기 위한 기본 보안 원칙입니다. 사소해 보여도 반드시 습관화해 주세요.</p>
+                <ul class="g-checklist">
+                  <li><span class="g-check">✓</span><span><strong>의심스러운 링크</strong> 전달·업로드·클릭 금지</span></li>
+                  <li><span class="g-check">✓</span><span><strong>개인정보 보호</strong> — 참가자 연락처·타 그룹 멤버 정보 외부 공유 금지</span></li>
+                  <li><span class="g-check">✓</span><span><strong>2단계 인증</strong> — 이메일·SNS·카톡 계정에 반드시 설정 권장</span></li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- 4. 활동 보고·지원금 -->
+          <article class="guide-item" data-color="green">
+            <div class="g-head" role="button" tabindex="0" aria-expanded="false">
+              <div class="g-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/></svg>
+              </div>
+              <div class="g-title-block">
+                <div class="g-eyebrow">Principle 04 · Reporting</div>
+                <h4>활동 보고 · 지원금 사용</h4>
+              </div>
+              <span class="g-num-pill">4 / 7</span>
+              <span class="g-chevron">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </span>
+            </div>
+            <div class="g-body">
+              <div class="g-body-inner">
+                <p class="g-lead">투명한 활동 보고와 계획된 지원금 사용은 신뢰의 기반입니다. 아래 4단계 프로세스를 지켜 주세요.</p>
+                <div class="g-process">
+                  <div class="g-step"><span class="g-step-num">1</span><span class="g-step-text"><strong>격월 활동 보고서</strong> — 기한 내 제출이 원칙 (Trello 활용)</span></div>
+                  <div class="g-step"><span class="g-step-num">2</span><span class="g-step-text"><strong>지원금 사용 범위</strong> — 승인된 활동 계획서 안에서만 집행</span></div>
+                  <div class="g-step"><span class="g-step-num">3</span><span class="g-step-text"><strong>계획 변경 시</strong> — 임의 진행 금지, 반드시 사전 협의</span></div>
+                  <div class="g-step"><span class="g-step-num">4</span><span class="g-step-text"><strong>지출 내역</strong> — 꼼꼼히 작성해 격월 보고</span></div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 5. 촬영 -->
+          <article class="guide-item" data-color="coral">
+            <div class="g-head" role="button" tabindex="0" aria-expanded="false">
+              <div class="g-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+              </div>
+              <div class="g-title-block">
+                <div class="g-eyebrow">Principle 05 · Photography</div>
+                <h4>콘텐츠 촬영</h4>
+              </div>
+              <span class="g-num-pill">5 / 7</span>
+              <span class="g-chevron">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </span>
+            </div>
+            <div class="g-body">
+              <div class="g-body-inner">
+                <p class="g-lead">현장 사진과 영상은 활동 기록에 큰 자산이지만, <strong>동의 없는 촬영은 절대 금지</strong>입니다.</p>
+                <div class="g-do-dont">
+                  <div class="g-col do">
+                    <h6>권장 · Do</h6>
+                    <ul>
+                      <li>촬영 전 대상자에게 명시적 허락 받기</li>
+                      <li>얼굴이 나온 사진은 게시 전 재확인</li>
+                      <li>단체 사진은 사전 공지 후 촬영</li>
+                    </ul>
+                  </div>
+                  <div class="g-col dont">
+                    <h6>지양 · Don't</h6>
+                    <ul>
+                      <li>타 그룹·활동가들의 무단 촬영</li>
+                      <li>얼굴 노출 사진의 임의 SNS 게시</li>
+                      <li>맥락 없는 스냅 · 뒷모습 무단 사용</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 6. 지급·참여 중단 -->
+          <article class="guide-item" data-color="red">
+            <div class="g-head" role="button" tabindex="0" aria-expanded="false">
+              <div class="g-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="13"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              </div>
+              <div class="g-title-block">
+                <div class="g-eyebrow">Principle 06 · Termination</div>
+                <h4>지급 · 참여 중단 기준</h4>
+              </div>
+              <span class="g-num-pill">6 / 7</span>
+              <span class="g-chevron">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </span>
+            </div>
+            <div class="g-body">
+              <div class="g-body-inner">
+                <p class="g-lead">아래 사항이 발생할 경우 <strong>지원금 지급 중단 및 프로그램 참여 중단</strong>이 논의될 수 있습니다.</p>
+                <ul class="g-checklist">
+                  <li><span class="g-check" style="background: rgba(221,57,40,0.12); color: var(--link-red-dark);">!</span><span>필수 참여 활동에 <strong>3회 이상 불참</strong></span></li>
+                  <li><span class="g-check" style="background: rgba(221,57,40,0.12); color: var(--link-red-dark);">!</span><span>활동 보고서 <strong>미제출</strong></span></li>
+                  <li><span class="g-check" style="background: rgba(221,57,40,0.12); color: var(--link-red-dark);">!</span><span>지원금을 승인 범위 <strong>외 임의 사용</strong></span></li>
+                  <li><span class="g-check" style="background: rgba(221,57,40,0.12); color: var(--link-red-dark);">!</span><span>가이드 원칙 <strong>지속적 위반</strong></span></li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- 7. 협력·연대 -->
+          <article class="guide-item" data-color="purple">
+            <div class="g-head" role="button" tabindex="0" aria-expanded="false">
+              <div class="g-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+              </div>
+              <div class="g-title-block">
+                <div class="g-eyebrow">Principle 07 · Solidarity</div>
+                <h4>협력과 존중 · 청년 세대 연대</h4>
+              </div>
+              <span class="g-num-pill">7 / 7</span>
+              <span class="g-chevron">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </span>
+            </div>
+            <div class="g-body">
+              <div class="g-body-inner">
+                <p class="g-lead">개별 팀의 성장뿐 아니라 <strong>세대 전체의 연대</strong>가 프로그램의 지향점입니다.</p>
+                <div class="g-split">
+                  <div class="g-panel">
+                    <h6><span class="g-dot"></span>팀 · 멤버 간 협력과 존중</h6>
+                    <ul class="g-checklist">
+                      <li><span class="g-check">✓</span><span>서로를 <strong>동료 활동가</strong>로 존중하며 소통</span></li>
+                      <li><span class="g-check">✓</span><span>의견 차이가 있을 땐 상대의 입장을 먼저 이해</span></li>
+                      <li><span class="g-check">✓</span><span>서로의 다름을 통해 배우며 관점을 확장</span></li>
+                    </ul>
+                  </div>
+                  <div class="g-panel">
+                    <h6><span class="g-dot"></span>청년 세대 연대 및 협업</h6>
+                    <ul class="g-checklist">
+                      <li><span class="g-check">✓</span><span>다른 그룹의 활동에 관심을 갖고 응원</span></li>
+                      <li><span class="g-check">✓</span><span>협업·교류 가능하면 적극적으로 제안·연결</span></li>
+                      <li><span class="g-check">✓</span><span><strong>JSU(Just Show Up)</strong> 등 커뮤니티 활동으로 서로를 깊이 알아가기</span></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="sec-cream">
+      <div class="container">
+        <span class="pill blue">운영 및 소통</span>
+        <h2 class="big-title">언제든 함께합니다.</h2>
+        <p class="big-sub">
+          월별 체크인 · 중간 점검 · 최종 발표까지, 링크가 언제든 곁에서 함께합니다.
+          보고서는 <strong>트렐로(Trello)</strong>에 격월로 제출해 주세요.
+        </p>
+
+        <div class="contact">
+          <div>
+            <div class="role">담당자 A</div>
+            <h3>김하영</h3>
+            <div class="teams">체인져스 · Draw of Dream · 미소컬러틱</div>
+          </div>
+          <div>
+            <div class="role">담당자 B</div>
+            <h3>김노엘</h3>
+            <div class="teams">KIS · NORA · 진실의 등대</div>
+          </div>
+          <div class="contact-foot">
+            소통 가능 시간 <strong style="color:#fff;">10:00 – 18:00</strong> · 카카오톡 · 전화 · 이메일로 소통 가능
+            &nbsp;|&nbsp; 협력 지점: 프로젝트·활동 홍보
           </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- CONTACT -->
-  <section id="contact" style="background: var(--bg);">
-    <div class="container">
-      <span class="sec-num">09 · 운영 및 소통</span>
-      <h2 class="sec-title">그룹별 소통 담당자</h2>
-      <p class="sec-sub">
-        월별 체크인 · 중간 점검 · 최종 발표까지, 링크가 언제든 곁에서 함께합니다.
-        보고서는 <strong>트렐로(Trello)</strong>에 격월로 제출해 주세요.
-      </p>
-
-      <div class="contact" style="margin-top: 40px;">
-        <div>
-          <div class="role">담당자 A</div>
-          <h3>김하영</h3>
-          <div class="teams">체인져스 · Draw of Dream · 미소컬러틱</div>
-        </div>
-        <div>
-          <div class="role">담당자 B</div>
-          <h3>김노엘</h3>
-          <div class="teams">KIS · NORA · 진실의 등대</div>
-        </div>
-        <div class="contact-foot">
-          소통 가능 시간 <strong style="color:#fff;">10:00 – 18:00</strong> · 카카오톡 · 전화 · 이메일로 소통 가능
-          &nbsp;|&nbsp; 협력 지점: 프로젝트·활동 홍보
+        <div class="page-nav">
+          <a data-goto="p4">← 이전 · 선발 팀</a>
+          <a class="next" data-goto="p1">처음으로 ↑</a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta">
-    <div class="container">
-      <span class="sec-num">LiNK Impact Fund Program 2026</span>
-      <h2>이제 함께 시작합니다.</h2>
-      <p>여러분의 8개월이 더 큰 변화로 이어지도록, 링크가 곁에서 함께하겠습니다.</p>
-      <div class="signature">LIBERTY IN NORTH KOREA</div>
-    </div>
-  </section>
+    </section>
+  </div>
 
   <footer>
     <div class="container">
@@ -813,5 +1656,73 @@
     </div>
   </footer>
 
+  <script>
+    (function() {
+      const buttons = document.querySelectorAll('.nav-btn');
+      const pages   = document.querySelectorAll('.page');
+      const gotoLinks = document.querySelectorAll('[data-goto]');
+
+      function show(id) {
+        pages.forEach(p => p.classList.toggle('active', p.id === id));
+        buttons.forEach(b => b.classList.toggle('active', b.dataset.target === id));
+        // Scroll to top on page change
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Update hash without triggering scroll
+        if (history.replaceState) {
+          history.replaceState(null, '', '#' + id);
+        }
+      }
+
+      buttons.forEach(btn => btn.addEventListener('click', () => show(btn.dataset.target)));
+      gotoLinks.forEach(a => a.addEventListener('click', (e) => {
+        e.preventDefault();
+        show(a.dataset.goto);
+      }));
+
+      // Init from hash
+      const initial = (location.hash || '#p1').replace('#', '');
+      if (document.getElementById(initial)) show(initial);
+
+      // ---- Guide accordion (Page 5) ----
+      const items = document.querySelectorAll('.guide-item');
+      items.forEach((item, idx) => {
+        const head = item.querySelector('.g-head');
+        const toggle = () => {
+          const isOpen = item.classList.toggle('open');
+          head.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        };
+        head.addEventListener('click', toggle);
+        head.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggle();
+          }
+        });
+      });
+      // Open the first item by default so users see the pattern
+      if (items[0]) {
+        items[0].classList.add('open');
+        const h = items[0].querySelector('.g-head');
+        if (h) h.setAttribute('aria-expanded', 'true');
+      }
+
+      const expandAll = document.getElementById('guide-expand-all');
+      const collapseAll = document.getElementById('guide-collapse-all');
+      if (expandAll) expandAll.addEventListener('click', () => {
+        items.forEach(i => {
+          i.classList.add('open');
+          const h = i.querySelector('.g-head');
+          if (h) h.setAttribute('aria-expanded', 'true');
+        });
+      });
+      if (collapseAll) collapseAll.addEventListener('click', () => {
+        items.forEach(i => {
+          i.classList.remove('open');
+          const h = i.querySelector('.g-head');
+          if (h) h.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
