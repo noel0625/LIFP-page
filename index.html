@@ -516,7 +516,7 @@
     /* Funding table */
     .table-wrap { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 28px rgba(15,23,42,0.06); }
     table { width: 100%; border-collapse: collapse; }
-    th, td { padding: 20px 22px; text-align: left; font-size: 15px; }
+    th, td { padding: 20px 22px; text-align: left; font-size: 15px; vertical-align: middle; word-break: keep-all; }
     thead th {
       background: var(--link-red); color: #fff; font-weight: 800; font-size: 13px; letter-spacing: 0.06em;
     }
@@ -524,6 +524,37 @@
     tbody tr:hover { background: #FAFAFA; }
     td.pct { font-weight: 900; color: var(--link-red); font-family: 'Inter', sans-serif; font-size: 18px; }
     td.stage { font-weight: 800; font-size: 16px; }
+
+    /* Funding table — mobile: card layout */
+    @media (max-width: 720px) {
+      .table-wrap { background: transparent; box-shadow: none; border-radius: 0; }
+      .table-wrap table, .table-wrap thead, .table-wrap tbody, .table-wrap tr, .table-wrap th, .table-wrap td { display: block; }
+      .table-wrap thead { position: absolute; left: -9999px; top: -9999px; }
+      .table-wrap tbody { display: grid; gap: 14px; }
+      .table-wrap tr {
+        background: #fff; border-radius: 16px; padding: 18px 20px;
+        box-shadow: 0 6px 20px rgba(15,23,42,0.06); border-top: none;
+        display: grid; grid-template-columns: auto 1fr; column-gap: 16px; row-gap: 10px; align-items: center;
+      }
+      .table-wrap tr:hover { background: #fff; }
+      .table-wrap td { padding: 0; font-size: 15px; }
+      .table-wrap td.stage {
+        order: 1; align-self: start;
+        background: var(--link-red-soft); color: var(--link-red);
+        font-weight: 800; font-size: 15px;
+        padding: 8px 14px; border-radius: 999px; line-height: 1;
+        min-width: 48px; text-align: center;
+      }
+      .table-wrap td[data-label="지급 날짜"] { order: 2; }
+      .table-wrap td.pct { order: 3; grid-column: 1 / -1; text-align: left !important; font-size: 22px; }
+      .table-wrap td.desc { order: 4; grid-column: 1 / -1; color: var(--ink-2); font-size: 14px; line-height: 1.6; border-top: 1px dashed #F3F4F6; padding-top: 12px; margin-top: 4px; }
+      .table-wrap td[data-label] { position: relative; padding-left: 0; }
+      .table-wrap td[data-label]::before {
+        content: attr(data-label);
+        display: block; font-size: 11px; font-weight: 800; letter-spacing: 0.06em;
+        color: var(--ink-2); margin-bottom: 4px;
+      }
+    }
 
     /* Guide accordion — Contact & 가이드 */
     .guide-accordion { display: grid; gap: 14px; margin-top: 20px; }
@@ -992,21 +1023,21 @@
             <tbody>
               <tr>
                 <td class="stage">1차</td>
-                <td>양 당사자의 본 약정서 서명 시</td>
-                <td>7월 1일</td>
-                <td class="pct" style="text-align: right;">30%</td>
+                <td class="desc" data-label="시기">양 당사자의 본 약정서 서명 시</td>
+                <td data-label="지급 날짜">7월 1일</td>
+                <td class="pct" data-label="비율" style="text-align: right;">30%</td>
               </tr>
               <tr>
                 <td class="stage">2차</td>
-                <td>1차 지출 내역·활동 보고서 검토·승인 후</td>
-                <td>9월 1일</td>
-                <td class="pct" style="text-align: right;">40%</td>
+                <td class="desc" data-label="시기">1차 지출 내역·활동 보고서 검토·승인 후</td>
+                <td data-label="지급 날짜">9월 1일</td>
+                <td class="pct" data-label="비율" style="text-align: right;">40%</td>
               </tr>
               <tr>
                 <td class="stage">3차</td>
-                <td>2차 지출 내역·활동 보고서 검토·승인 및 중간 점검 후</td>
-                <td>12월 1일</td>
-                <td class="pct" style="text-align: right;">30%</td>
+                <td class="desc" data-label="시기">2차 지출 내역·활동 보고서 검토·승인 및 중간 점검 후</td>
+                <td data-label="지급 날짜">12월 1일</td>
+                <td class="pct" data-label="비율" style="text-align: right;">30%</td>
               </tr>
             </tbody>
           </table>
